@@ -17,18 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-
-Route::resource('plato',PlatoController::class);
+Route::resource('platos', PlatoController::class);
+//Route::get('platos', [PlatoController::class,'index']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
 })->name('dash');
 
-Route::get('dash',[PlatoController::class,'__invoke'])->name('dash.invoke');
-
-Route::get('/dash/plato',function(){
+//
+/*Route::get('/dash/plato',function(){
     return view('plato.index');
 });
 Route::get('/dash/plato/create', function () {
     return view('plato.create');
-});
+});*/

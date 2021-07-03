@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMenu;
 use Illuminate\Http\Request;
+use App\Models\Plato;
+//use Illuminate\Support\Str; //para colocar los helper
 
 class PlatoController extends Controller
 {
@@ -13,7 +16,8 @@ class PlatoController extends Controller
      */
     public function index()
     {
-        //
+        $platos=Plato::all();
+        return view('plato.index',compact('platos'));
     }
 
     /**
@@ -23,7 +27,7 @@ class PlatoController extends Controller
      */
     public function create()
     {
-        //
+        return view('plato.create');
     }
 
     /**
@@ -34,7 +38,12 @@ class PlatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $platos= new Plato();
+        $platos->codigo=$request->get('codigo');
+        $platos->nombre=$request->get('nombre');
+        $platos->precio=$request->get('precio');
+        $platos->save();
+        return redirect()->route('platos.index');//redirige a la vista index de la carpeta plato
     }
 
     /**
@@ -54,9 +63,9 @@ class PlatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Plato $platos)
     {
-        //
+        //return view('plato.edit',compact('platos'));
     }
 
     /**
@@ -66,9 +75,18 @@ class PlatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Plato $platos)
     {
-        //
+        $request->validate([//para validar los inputs, y mostrar mensaje
+            'codigo'=>'required',
+            'nombre'=>'required',
+            'precio'=>'required'
+        ]);
+
+       //$menu->slug=$request->nombre;
+       $platos->update($request->all());
+       $platos->save();
+       return redirect()->route('menu.index');
     }
 
     /**
@@ -77,8 +95,9 @@ class PlatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Plato $plato)
     {
-        //
+        $plato->delete();
+        return redirect()->route('plato.index');
     }
 }

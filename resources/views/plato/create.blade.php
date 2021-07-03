@@ -1,19 +1,32 @@
-@extends('adminlte::page')
+@extends('layouts.plantillabase');
 
-@section('title', 'CREAR PLATO')
+@section('title', 'PLATO')
 
-@section('content_header')
-    <h1>VISTA CREAR PLATOS</h1>
-@stop
+@section('contenido')
+  <form action="{{route('platos.store')}}" method="POST">
+    @csrf
+    <div class="mb-3">
+      <label for="" class="col-form-labelel">Código</label>
+      <input id="codigo" name="codigo" type="text" value="{{old('codigo')}}" class="form-control" tabindex="1">
+    </div>
+<!--ERROR codigo-->
 
-@section('content')<!--TABLA-->
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
+<!--***************************************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Nombre</label>
+        <input id="nombre" name="nombre" type="text" value="{{old('nombre')}}" class="form-control" tabindex="2">
+    </div>
+<!--ERROR nombre-->
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+<!--***************************************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Precio</label>
+        <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" tabindex="3">
+    <!--***************************************-->
+    </div>
+<!--ERROR precio-->
+      <a href="platos.index" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+  </form>
+@endsection
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop

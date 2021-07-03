@@ -14,11 +14,12 @@ class CreatePlatosTable extends Migration
     public function up()
     {
         Schema::create('platos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
+           // $table->id();
+            $table->unsignedInteger('codigo');
+
+            $table->string('nombre', 20);
             //$table->string('slug')->unique;
-            $table->text('descripcion');//->nullable();
-            $table->text('categoria');
+            $table->decimal('precio',8,2);//->nullable();
             $table->timestamps();
         });
     }
