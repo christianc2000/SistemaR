@@ -24,7 +24,6 @@ class CreateTrabajadorsTable extends Migration
             $table->foreign('cod_cargo')->references('codigo')->on('cargos')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
