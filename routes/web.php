@@ -16,13 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
+ //return view('welcome');
 });
 Route::resource('platos', PlatoController::class);
 //Route::get('platos', [PlatoController::class,'index']);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
-    return view('dash.index');
-})->name('dash');
+Route::resource('cargos',CargoController::class);
+Route::resource('personas',PersonaController::class);
+Route::resource('trabajadors',TrabajadorController::class);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 //
 /*Route::get('/dash/plato',function(){

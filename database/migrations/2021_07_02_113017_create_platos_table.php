@@ -14,10 +14,9 @@ class CreatePlatosTable extends Migration
     public function up()
     {
         Schema::create('platos', function (Blueprint $table) {
-           // $table->id();
+            $table->id();
             $table->unsignedInteger('codigo');
-
-            $table->string('nombre', 20);
+            $table->string('nombre', 30);
             //$table->string('slug')->unique;
             $table->decimal('precio',8,2);//->nullable();
             $table->timestamps();
