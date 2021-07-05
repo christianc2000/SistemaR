@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\PlatoController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\TrabajadorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +20,12 @@ Route::get('/', function () {
  //return view('welcome');
 });
 Route::resource('platos', PlatoController::class);
+Route::resource('cargos', CargoController::class);
+Route::resource('trabajadors', [TrabajadorController::class]);
 //Route::get('platos', [PlatoController::class,'index']);
-Route::resource('cargos',CargoController::class);
-Route::resource('personas',PersonaController::class);
-Route::resource('trabajadors',TrabajadorController::class);
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
