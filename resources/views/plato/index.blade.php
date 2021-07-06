@@ -3,7 +3,7 @@
 @section('title', 'INDEX PLATOS')
 
 @section('content_header')
-    <h1>Lista de platos</h1>
+    <h1>Lista de productos</h1>
 @stop
 
 @section('content')

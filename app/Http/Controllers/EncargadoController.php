@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Encargado;
 use App\Http\Requests\StoreMenu;
 use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Models\Trabajador;
 use GuzzleHttp\Middleware;
-class PersonaController extends Controller
+class EncargadoController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
@@ -18,7 +20,9 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        return view('persona.index');
+        $personas= Persona::all();
+        $encargados=Encargado::all();
+        return view('encargado.index',compact('encargados'));
     }
 
     /**
@@ -45,10 +49,10 @@ class PersonaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Encargado $encargado)
     {
         //
     }
@@ -56,10 +60,10 @@ class PersonaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Encargado $encargado)
     {
         //
     }
@@ -68,10 +72,10 @@ class PersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Encargado $encargado)
     {
         //
     }
@@ -79,10 +83,10 @@ class PersonaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Encargado $encargado)
     {
         //
     }

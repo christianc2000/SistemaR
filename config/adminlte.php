@@ -255,12 +255,27 @@ return [
             'label_color' => 'warning',
         ],
         [
-            'text'        => 'Personas',
-            'url'         => 'personas',
+            'text'        => 'Proveedores',
+            'url'         => 'proveedor',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',
         ],
+        [
+            'text'    => 'Persona',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Trabajador',
+                    'url'  => 'trabajadors',
+                ],
+                [
+                    'text' => 'Encargados',
+                    'url'  => 'encargados',
+                ],
+            ],
+        ],
+
         [
             'text'        => 'Productos',
             'url'         => '/platos',
@@ -268,7 +283,13 @@ return [
             'label'       => 'CRUD',
             'label_color' => 'warning',
         ],
-
+        [
+            'text'        => 'Unidad de Medida',
+            'url'         => '/unidadMedidas',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de Usuario',

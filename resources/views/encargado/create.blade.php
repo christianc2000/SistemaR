@@ -1,24 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'CREAR PLATO')
+@section('title', 'CREAR PERSONA')
 
 @section('content_header')
-    <h1>Crear Plato</h1>
+    <h1>Crear Persona</h1>
 @stop
 
 @section('content')
 <form action="{{route('platos.store')}}" method="POST">
     @csrf
-    @if(count($errors)>0)
-    <div class="alert alert-danger" rote="alert">
-     <ul>
-        @foreach($errors->all() as $erro)
-          {{$error}}
-        @endforeach
-    </ul>
-    </div>
-
-    @endif
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
       <input id="codigo" name="codigo" type="text" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
@@ -40,7 +30,7 @@
     </div>
 <!--ERROR precio-->
       <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
-      <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
+      <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
   </form>
 @stop
 

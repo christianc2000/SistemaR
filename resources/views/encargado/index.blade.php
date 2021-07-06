@@ -1,34 +1,35 @@
 @extends('adminlte::page')
 
-@section('title', 'PERSONAS')
+@section('title', 'ENCARGADOS')
 
 @section('content_header')
-    <h1>Lista Personas</h1>
+    <h1>Lista Encargados</h1>
 @stop
 
 @section('content')
-<a href="{{route('platos.create')}}" class="btn btn-primary mb-4" >CREAR</a>
+<a href="" class="btn btn-primary mb-4" >CREAR</a>
 
 <table id="platos" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
-          <th scope="col">CÓDIGO</th>
-          <th scope="col">NOMBRE</th>
-          <th scope="col">PRECIO</th>
+          <th scope="col">CI</th>
+          <th scope="col">CODIGO</th>
+
           <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
-        @foreach ($platos as $plato)
+        @foreach ($encargados as $encargado)
           <tr>
-              <td>{{$plato->codigo}}</td>
-              <td>{{$plato->nombre}}</td>
-              <td>{{$plato->precio}}</td>
+              <td>{{$encargado->ci_e}}</td>
+              <td>{{$encargado->cod_prov}}</td>
               <td>
                 <!--platos/{plato}/edit-->
-                <!---->
-                <form action="{{route('platos.destroy',$plato)}}" method="POST">
-                    <a href="{{route('platos.edit', $plato)}}" class="btn btn-primary">Editar</a>
+
+                <!--<input type="button" style="background-image:url('your_url')"/>    -->
+                <form action="" method="POST">
+                    <a href="" class="btn btn-primary">Editar</a>
+                    <a href="" class="btb btn-secondary" style="background-image:url('your_url')">Mostrar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

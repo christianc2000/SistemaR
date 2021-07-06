@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMenu;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
-use App\Models\Persona;
+use App\Http\Requests\StoreMenu;
 use GuzzleHttp\Middleware;
-class PersonaController extends Controller
+class ProveedorController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
@@ -18,7 +18,8 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        return view('persona.index');
+        $proveedors= Proveedor::all();
+        return view('proveedor.index',compact('proveedors'));
     }
 
     /**
@@ -28,7 +29,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedor.create');
     }
 
     /**
@@ -45,10 +46,10 @@ class PersonaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Proveedor $proveedor)
     {
         //
     }
@@ -56,10 +57,10 @@ class PersonaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Proveedor $proveedor)
     {
         //
     }
@@ -68,10 +69,10 @@ class PersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Proveedor $proveedor)
     {
         //
     }
@@ -79,10 +80,10 @@ class PersonaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Proveedor $proveedor)
     {
         //
     }

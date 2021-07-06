@@ -1,34 +1,35 @@
 @extends('adminlte::page')
 
-@section('title', 'PERSONAS')
+@section('title', 'PROVEEDOR')
 
 @section('content_header')
-    <h1>Lista Personas</h1>
+    <h1>Lista Proveedores</h1>
 @stop
 
 @section('content')
-<a href="{{route('platos.create')}}" class="btn btn-primary mb-4" >CREAR</a>
+<a href="{{route('proveedor.create')}}" class="btn btn-primary mb-4" >CREAR</a>
 
-<table id="platos" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
+<table id="proveedor" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">CÓDIGO</th>
-          <th scope="col">NOMBRE</th>
-          <th scope="col">PRECIO</th>
+          <th scope="col">NOMBRE NEGOCIO</th>
+          <th scope="col">DIRECCION</th>
           <th scope="col">ACCIONES</th>
        </tr>
+       <!--'codigo','nombre_negocio','direccion'-->
     </thead>
     <TBODY>
-        @foreach ($platos as $plato)
+        @foreach ($proveedors as $proveedor)
           <tr>
-              <td>{{$plato->codigo}}</td>
-              <td>{{$plato->nombre}}</td>
-              <td>{{$plato->precio}}</td>
+              <td>{{$proveedor->codigo}}</td>
+              <td>{{$proveedor->nombre_negocio}}</td>
+              <td>{{$proveedor->direccion}}</td>
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="{{route('platos.destroy',$plato)}}" method="POST">
-                    <a href="{{route('platos.edit', $plato)}}" class="btn btn-primary">Editar</a>
+                <form action="" method="POST">
+                    <a href="" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -51,7 +52,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#platos').DataTable({
+     $('#proveedor').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );

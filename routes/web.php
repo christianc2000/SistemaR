@@ -4,8 +4,9 @@ use App\Http\Controllers\PlatoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\TrabajadorController;
-use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\UnidadMedidaController;
+use App\Http\Controllers\ProveedorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,8 @@ Route::get('/', function () {
  //return view('welcome');
 });
 Route::resource('platos', PlatoController::class);
-Route::resource('personas', PersonaController::class);
+Route::resource('encargados', EncargadoController::class);
+Route::resource('proveedor', ProveedorController::class);
 Route::resource('unidadMedidas', UnidadMedidaController::class);
 Route::resource('cargos', CargoController::class);
 Route::resource('trabajadors', TrabajadorController::class);
@@ -30,7 +32,7 @@ Route::resource('trabajadors', TrabajadorController::class);
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
 })->name('dash');
 

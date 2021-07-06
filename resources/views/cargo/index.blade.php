@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'INDEX CARGOS')
+@section('title', 'CARGOS')
 
 @section('content_header')
-    <h1>Lista de platos</h1>
+    <h1>Lista de Cargos</h1>
 @stop
 
 @section('content')
@@ -13,9 +13,10 @@
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">CÓDIGO</th>
-          <th scope="col">DESCRIPCIÓN</th>
+          <th scope="col">DESCRIPCION</th>
           <th scope="col">SUELDO</th>
-          <th scope="col">PERFIL</th>
+          <th scope="col">PERFIL USUARIO</th>
+          <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
@@ -23,13 +24,13 @@
           <tr>
               <td>{{$cargo->codigo}}</td>
               <td>{{$cargo->descripcion}}</td>
-              <td>{{$cargo->sueldo}}</td>
+              <td>{{$cargo->precio}}</td>
               <td>{{$cargo->perfil_usuario}}</td>
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="{{route('cargos.destroy',$plato)}}" method="POST">
-                    <a href="{{route('cargos.edit', $plato)}}" class="btn btn-primary">Editar</a>
+                <form action="" method="POST">
+                    <a href="" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

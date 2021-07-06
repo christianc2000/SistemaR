@@ -44,8 +44,8 @@ class CargoController extends Controller
         $cargos= new Cargo();
         $cargos->codigo=$request->get('codigo');
         $cargos->descripcion=$request->get('descripcion');
-        $cargos->precio=$request->get('precio');
-        $cargos->perfil_usuaio->get('');
+        $cargos->sueldo=$request->get('sueldo');
+        $cargos->perfil_usuario->get('perfil_usuario');
         $cargos->save();
     }
 
