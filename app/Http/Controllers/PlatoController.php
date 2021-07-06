@@ -50,6 +50,17 @@ class PlatoController extends Controller
         $platos->precio=$request->get('precio');
         $platos->save();
 
+      /*  $campos=[
+            'codigo'=>'required|Integer',
+            'nombre'=>'required|string|max:30',
+            'precio'=>'requered|float',
+        ];
+        $mensaje=[
+             'required'=>'El :attribute es requerido',
+
+        ];
+        $this->validate($request, $campos, $mensaje);
+*/
         return redirect()->route('platos.index');//redirige a la vista index de la carpeta plato
      }
 

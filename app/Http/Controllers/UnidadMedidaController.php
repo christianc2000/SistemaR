@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMenu;
+use App\Models\UnidadMedida;
 use Illuminate\Http\Request;
-use App\Models\Cargo;
-use GuzzleHttp\Middleware;
 
-class CargoController extends Controller
+class UnidadMedidaController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $cargos= Cargo::all();
-        return view('cargo.index',compact('cargos'));
+        //
     }
 
     /**
@@ -30,7 +24,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        return view('cargo.create');
+        //
     }
 
     /**
@@ -41,21 +35,16 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        $cargos= new Cargo();
-        $cargos->codigo=$request->get('codigo');
-        $cargos->descripcion=$request->get('descripcion');
-        $cargos->precio=$request->get('precio');
-        $cargos->perfil_usuaio->get('');
-        $cargos->save();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  \App\Models\UnidadMedida  $unidadMedida
      * @return \Illuminate\Http\Response
      */
-    public function show(Cargo $cargo)
+    public function show(UnidadMedida $unidadMedida)
     {
         //
     }
@@ -63,10 +52,10 @@ class CargoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  \App\Models\UnidadMedida  $unidadMedida
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cargo $cargo)
+    public function edit(UnidadMedida $unidadMedida)
     {
         //
     }
@@ -75,10 +64,10 @@ class CargoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cargo  $cargo
+     * @param  \App\Models\UnidadMedida  $unidadMedida
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cargo $cargo)
+    public function update(Request $request, UnidadMedida $unidadMedida)
     {
         //
     }
@@ -86,10 +75,10 @@ class CargoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  \App\Models\UnidadMedida  $unidadMedida
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cargo $cargo)
+    public function destroy(UnidadMedida $unidadMedida)
     {
         //
     }

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Rosticeria',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -246,13 +246,29 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+
         [
-            'text'        => 'Platos',
-            'url'         => 'platos',
+            'text'        => 'Cargos',
+            'url'         => 'cargos',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',
         ],
+        [
+            'text'        => 'Personas',
+            'url'         => 'personas',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+        [
+            'text'        => 'Productos',
+            'url'         => '/platos',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de Usuario',

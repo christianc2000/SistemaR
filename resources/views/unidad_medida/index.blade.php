@@ -1,35 +1,34 @@
 @extends('adminlte::page')
 
-@section('title', 'INDEX CARGOS')
+@section('title', 'UNIDAD DE MEDIDA')
 
 @section('content_header')
-    <h1>Lista de platos</h1>
+    <h1>Lista de Unidad de Medida</h1>
 @stop
 
 @section('content')
-<a href="{{route('cargos.create')}}" class="btn btn-primary mb-4" >CREAR</a>
+<a href="{{route('unidadMedidas.create')}}" class="btn btn-primary mb-4" >CREAR</a>
 
-<table id="cargos" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
+<table id="unidadMedidas" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">CÓDIGO</th>
-          <th scope="col">DESCRIPCIÓN</th>
-          <th scope="col">SUELDO</th>
-          <th scope="col">PERFIL</th>
+          <th scope="col">DESCRIPCION</th>
+          <th scope="col">ABREVIATURA</th>
+          <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
-        @foreach ($cargos as $cargo)
+        @foreach ($uMedidas as $uMedida)
           <tr>
-              <td>{{$cargo->codigo}}</td>
-              <td>{{$cargo->descripcion}}</td>
-              <td>{{$cargo->sueldo}}</td>
-              <td>{{$cargo->perfil_usuario}}</td>
+              <td>{{$uMedida->codigo}}</td>
+              <td>{{$uMedida->descripcion}}</td>
+              <td>{{$uMedida->abreviatura}}</td>
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="{{route('cargos.destroy',$plato)}}" method="POST">
-                    <a href="{{route('cargos.edit', $plato)}}" class="btn btn-primary">Editar</a>
+                <form action="{{route('platos.destroy',$uMedida)}}" method="POST">
+                    <a href="{{route('platos.edit', $uMedida)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
