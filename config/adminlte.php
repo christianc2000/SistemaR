@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'Rosticeria',
-    'title_prefix' => '',
+    'title' => '',
+    'title_prefix' => 'Rosticeria | ',
     'title_postfix' => '',
 
     /*
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Rosticeria</b>"Buen Gusto"',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Rosticeria</b> Buen Gusto',
+    'logo_img' => 'vendor/adminlte/dist/img/logo2.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Rosticeria',
 
     /*
     |--------------------------------------------------------------------------
@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-info',
+    'usermenu_image' => true,
+    'usermenu_desc' => true,//para colocar el rol de la persona
+    'usermenu_profile_url' => true,//permite colocar el boton del perfil
 
     /*
     |--------------------------------------------------------------------------
@@ -83,10 +83,10 @@ return [
     |
     */
 
-    'layout_topnav' => null,
-    'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_topnav' => null,//al colocar en true coloca la barra en la parte superior y de manera horizontal
+    'layout_boxed' => null,//coloca el dashboard a una dimension menor
+    'layout_fixed_sidebar' => true,//para que el sidebar se quede fijo
+    'layout_fixed_navbar' => true,//true para que la barra superior del dashboard se quede fija
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -101,12 +101,12 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
+//para personalizar el sistema de LOGIN y REGISTRO
     'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
     'classes_auth_body' => 'bg-gradient-dark',
     'classes_auth_footer' => 'text-center',
-    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_icon' => 'text-light',
     'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
@@ -122,14 +122,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
+    'classes_brand' => 'bg-gray',//coloca coloar al titulo del dashboard
+    'classes_brand_text' => '',//para cambiar el color del titulo del dashboard
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_sidebar_nav' => 'sidebar-dark-info',
+    'classes_topnav' => 'navbar-info navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -250,9 +250,7 @@ return [
         [
             'text'        => 'Cargos',
             'url'         => 'cargos',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+
         ],
         [
             'text'        => 'Proveedores',

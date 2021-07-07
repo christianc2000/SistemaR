@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    //está generando valores random, al no tener uso de la base de datos
+    public function adminlte_image(){
+        return "https://picsum.photos/300/300";
+    }
+    public function adminlte_desc(){
+        return "Administrador";
+    }
+    public function adminlte_profile_url(){
+        return 'user/profile';
+    }
 }
