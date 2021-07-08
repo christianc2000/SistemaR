@@ -3,30 +3,33 @@
 @section('title', 'INDEX PLATOS')
 
 @section('content_header')
-    <h1>Lista de productos</h1>
+    <h1>Lista de Encargados</h1>
 @stop
 
 @section('content')
-<a href="" class="btn btn-primary mb-4" >CREAR</a>
+<a href="{{route('encargados.create')}}" class="btn btn-primary mb-4" >CREAR</a>
 
 <table id="encargados" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
-          <th scope="col">Código</th>
-          <th scope="col">Nombre Completo</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Email</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Proveedor</th>
+          <th scope="col">CI</th>
+          <th scope="col">Nombre(s)</th>
+          <th scope="col">Apellido(s)</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Negocio</th>
           <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
+        @foreach ($encargados as $encargado)
           <tr>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{$encargado->ci}}</td>
+              <td>{{$encargado->nombre}}</td>
+              <td>{{$encargado->apellido}}</td>
+              <td>{{$encargado->direccion}}</td>
+              <td>{{$encargado->sexo}}</td>
+              <td>{{$encargado->nombre_negocio}}</td>
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
@@ -38,7 +41,7 @@
                 </form>
               </td>
           </tr>
-
+          @endforeach
     </TBODY>
 </table>
 @stop

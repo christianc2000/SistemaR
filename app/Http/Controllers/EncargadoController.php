@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
+
+use Illuminate\Support\Facades\DB as FacadesDB;
+
 class EncargadoController extends Controller
 {
     public function __construct(){
@@ -20,22 +23,12 @@ class EncargadoController extends Controller
      */
     public function index()
     {
-        /*$personas=Persona::all();
-        $encargados=Encargado::all();
-        $proveedor=Proveedor::all();
-        foreach ($encargados as $filasP){
-              $EncargadoPersona= new Persona();
-              $EncargadoPersona=$personas->find($filasP->ci);
-              $EncargadoPersona->save();
-        }
-        foreach($EncargadoPersona as $filaProv){
-            $EncargadoProv=new Persona();
-            $EncargadoProv=$proveedor->find($filaProv->cod_prov);
-            $EncargadoProv->save();
-        }
-        select codigo, nombre, apellido, correo, sexo, do
-  */
-        return view('encargado.index');//,compact('EncargadoPersona',compact('EncargadoProv')));
+        $encargados=Encargado::join('personas','personas.ci', '=', 'encargados.ci_e')
+        ->join("proveedors","proveedors.codigo","=","encargados.cod_prov")
+        ->select('personas.ci','personas.nombre','personas.apellido','personas.direccion','personas.sexo','proveedors.nombre_negocio')
+        ->get();
+  //return $encargados;
+         return view('encargado.index',compact('encargados'));
     }
 
     /**
@@ -45,7 +38,8 @@ class EncargadoController extends Controller
      */
     public function create()
     {
-        //
+        $proveedors=Proveedor::all();
+        return view('encargado.create',compact('proveedors'));
     }
 
     /**
@@ -56,7 +50,16 @@ class EncargadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $encargados= new Encargado();
+        $personas= new Persona();
+        $encargados->codigo=$request->get('codigo');
+        $encargados->descripcion=$request->get('descripcion');
+        $encargados->sueldo=$request->get('sueldo');
+        $encargados->perfil_usuario=$request->get('perfil_usuario');
+        $encargados->save();
+
+        return redirect()->route('cargos.index');//redirige a la vista index de la carpeta cargo
     }
 
     /**

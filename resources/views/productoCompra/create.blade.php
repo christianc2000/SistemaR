@@ -21,11 +21,7 @@
     @endif
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
-<<<<<<< HEAD:resources/views/plato/create.blade.php
-      <input id="codigo" name="codigo" type="number" step="any" value="0.00" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
-=======
       <input id="id" name="id" type="text" class="form-control" tabindex="1"  required autofocus autocomplete="id">
->>>>>>> version2:resources/views/productoCompra/create.blade.php
     </div>
 <!--ERROR codigo-->
 
