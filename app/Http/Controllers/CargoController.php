@@ -45,8 +45,9 @@ class CargoController extends Controller
         $cargos->codigo=$request->get('codigo');
         $cargos->descripcion=$request->get('descripcion');
         $cargos->sueldo=$request->get('sueldo');
-        $cargos->perfil_usuario->get('perfil_usuario');
+        $cargos->perfil_usuario=$request->get('opcion');
         $cargos->save();
+        return redirect()->route('cargos.index');
     }
 
     /**

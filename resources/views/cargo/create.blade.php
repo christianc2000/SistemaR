@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="" method="POST">
+<form action="{{route('cargos.store')}}" method="POST">
     @csrf
     @if(count($errors)>0)
     <div class="alert alert-danger" rote="alert">
@@ -40,22 +40,17 @@
     </div>
 <!--ERROR precio-->
 <!--*************perfil usuario**************************-->
-<div class="mb-3">
-    <label for="" class="col-form-label">Perfil Usuario</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          Con Usuario
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          Sin Usuario
-        </label>
-      </div>
-<!--***************************************-->
-</div>
+<div class="form-group">
+
+    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
+      <div class="col-md-9 col-sm-9 col-xs-18">
+
+            <input type="radio" class="op" name="opcion" id="mod_opcion" value="1"> CON USUARIO
+            <br>
+            <input type="radio" class="op" name="opcion" id="mod_opcion" value="0"> SIN USUARIO
+        </div>
+       </div>
+
 <!--ERROR precio-->
       <a href="" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>

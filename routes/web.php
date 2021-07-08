@@ -34,7 +34,7 @@ Route::resource('trabajadors', TrabajadorController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
-})->name('dash');
+})->name('dashboard');
 
 //
 /*Route::get('/dash/plato',function(){
