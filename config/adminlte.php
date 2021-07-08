@@ -104,8 +104,8 @@ return [
 //para personalizar el sistema de LOGIN y REGISTRO
     'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => 'bg-gradient-dark',
-    'classes_auth_footer' => 'text-center',
+    'classes_auth_body' => 'bg-gradient-dark',//modifica el input del formulario con =d-none  quitamos el input
+    'classes_auth_footer' => 'text-center',// modifica el footer del login con =d-none quitamos el footer del login
     'classes_auth_icon' => 'text-light',
     'classes_auth_btn' => 'btn-flat btn-light',
 
@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => '',//welcome
     'classes_brand' => 'bg-gray',//coloca coloar al titulo del dashboard
     'classes_brand_text' => '',//para cambiar el color del titulo del dashboard
     'classes_content_wrapper' => '',
@@ -146,7 +146,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => false,//cambiandoloa true hace que el sidebar cuando entremos no este abierto
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'cargos',//especifica a que ruta ir cuando clickeamos el logo del panel
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -231,6 +231,11 @@ return [
             'text'         => 'search',
             'topnav_right' => false,
         ],
+        // [  //añade un link en el menu de inicio
+        //     'text'=>'Link 1', //paso el nombre que estara en el link
+        //     'route'=>'proveedors.index', //paso ruta de proveedor
+        //     'topnav'=>true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -244,7 +249,7 @@ return [
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => 'manage-blog',//can verifica si tiene un permiso(rol)
         ],
 
         [
@@ -276,10 +281,24 @@ return [
 
         [
             'text'        => 'Productos',
-            'url'         => '/platos',
             'icon'        => 'far fa-fw fa-file',
+            
             'label'       => 'CRUD',
             'label_color' => 'warning',
+            'submenu'     =>[  
+                [
+                    'text'=> 'Bebidas',
+                    'url' => '/platos',
+                ],
+                [
+                    'text'=> 'Platos',
+                    'url' => '',
+                ],
+                [
+                    'text'=> 'Productos de compra',
+                    'url' => 'productos',
+                ],
+            ]
         ],
         [
             'text'        => 'Unidad de Medida',
