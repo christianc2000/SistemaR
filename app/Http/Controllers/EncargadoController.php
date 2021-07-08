@@ -6,6 +6,7 @@ use App\Models\Encargado;
 use App\Http\Requests\StoreMenu;
 use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
 class EncargadoController extends Controller
 {
@@ -19,18 +20,22 @@ class EncargadoController extends Controller
      */
     public function index()
     {
-        $personas=Persona::all();
+        /*$personas=Persona::all();
         $encargados=Encargado::all();
-        $EncagadoPersona= new Persona();
-        foreach ($encargados as $filasP) {
-         //     $EncagadoPersona=$personas::find($filasP->ci);
-              $EncagadoPersona->save();
+        $proveedor=Proveedor::all();
+        foreach ($encargados as $filasP){
+              $EncargadoPersona= new Persona();
+              $EncargadoPersona=$personas->find($filasP->ci);
+              $EncargadoPersona->save();
         }
-        foreach($encargados as $filaProv){
-
+        foreach($EncargadoPersona as $filaProv){
+            $EncargadoProv=new Persona();
+            $EncargadoProv=$proveedor->find($filaProv->cod_prov);
+            $EncargadoProv->save();
         }
-
-        return view('encargado.index',compact('EncargadoPersona',));
+        select codigo, nombre, apellido, correo, sexo, do
+  */
+        return view('encargado.index');//,compact('EncargadoPersona',compact('EncargadoProv')));
     }
 
     /**

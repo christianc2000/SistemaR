@@ -1,45 +1,44 @@
 @extends('adminlte::page')
 
-@section('title', 'ENCARGADOS')
+@section('title', 'INDEX PLATOS')
 
 @section('content_header')
-    <h1>Lista Encargados</h1>
+    <h1>Lista de productos</h1>
 @stop
 
 @section('content')
 <a href="" class="btn btn-primary mb-4" >CREAR</a>
 
-<table id="platos" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
+<table id="encargados" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
-          <th scope="col">CI</th>
+          <th scope="col">Código</th>
           <th scope="col">Nombre Completo</th>
           <th scope="col">Apellido</th>
-          <th scope="col">Direccion</th>
-          <th scope="col">Sexo</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Teléfono</th>
           <th scope="col">Proveedor</th>
-          <th scope="col">Accion</th>
+          <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
-        @foreach ($encargados as $encargado)
           <tr>
-              <td>{{$encargado->ci_e}}</td>
-              <td>{{$encargado->cod_prov}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td>
                 <!--platos/{plato}/edit-->
-
-                <!--<input type="button" style="background-image:url('your_url')"/>    -->
+                <!---->
                 <form action="" method="POST">
                     <a href="" class="btn btn-primary">Editar</a>
-                    <a href="" class="btb btn-secondary" style="background-image:url('your_url')">Mostrar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
               </td>
           </tr>
-        @endforeach
+
     </TBODY>
 </table>
 @stop
@@ -55,7 +54,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#platos').DataTable({
+     $('#encargados').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );
