@@ -23,7 +23,7 @@ class EncargadoController extends Controller
         $encargados=Encargado::all();
         $EncagadoPersona= new Persona();
         foreach ($encargados as $filasP) {
-              $EncagadoPersona=$personas::find($filasP->ci);
+         //     $EncagadoPersona=$personas::find($filasP->ci);
               $EncagadoPersona->save();
         }
         foreach($encargados as $filaProv){
