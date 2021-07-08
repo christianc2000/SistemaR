@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnidadMedida extends Model
 {
+    protected $primaryKey = 'codigo';
     use HasFactory;
+    protected $guarded=[]; 
 }
