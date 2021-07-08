@@ -3,7 +3,7 @@
 @section('title', 'UNIDAD DE MEDIDA')
 
 @section('content_header')
-    <h1>Lista de Unidad de Medida</h1>
+    <h1>Lista de Unidades de Medidas</h1>
 @stop
 
 @section('content')
@@ -19,7 +19,7 @@
        </tr>
     </thead>
     <TBODY>
-        @foreach ($uMedidas as $uMedida)
+        @foreach ($unidadMedidas as $uMedida)
           <tr>
               <td>{{$uMedida->codigo}}</td>
               <td>{{$uMedida->descripcion}}</td>
@@ -27,8 +27,8 @@
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="{{route('platos.destroy',$uMedida)}}" method="POST">
-                    <a href="{{route('platos.edit', $uMedida)}}" class="btn btn-primary">Editar</a>
+                <form action="{{route('unidadMedidas.destroy',$uMedida)}}" method="POST">
+                    <a href="{{route('unidadMedidas.edit', $uMedida)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

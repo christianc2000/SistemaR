@@ -14,7 +14,8 @@ class UnidadMedidaController extends Controller
      */
     public function index()
     {
-        //
+        $unidadMedidas= UnidadMedida::all();
+        return view('unidad_medida.index',compact('unidadMedidas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class UnidadMedidaController extends Controller
      */
     public function create()
     {
-        //
+        return view('unidad_medida.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class UnidadMedidaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $unidadMedidas= new UnidadMedida();
+        $unidadMedidas->codigo=$request->get('codigo');
+        $unidadMedidas->descripcion=$request->get('descripcion');
+        $unidadMedidas->abreviatura=$request->get('abreviatura');
+        $unidadMedidas->save();
+        return redirect()->route('unidadMedidas.index');
     }
 
     /**
@@ -57,7 +63,7 @@ class UnidadMedidaController extends Controller
      */
     public function edit(UnidadMedida $unidadMedida)
     {
-        //
+        return view('unidad_medida.edit',compact('unidadMedida'));
     }
 
     /**
@@ -69,7 +75,14 @@ class UnidadMedidaController extends Controller
      */
     public function update(Request $request, UnidadMedida $unidadMedida)
     {
-        //
+        $request->validate([//para validar los inputs, y mostrar mensaje
+            'codigo'=>'required',
+            'descripcion'=>'required',
+            'abreviatura'=>'required'
+        ]);
+
+       $unidadMedida->update($request->all());
+       return redirect()->route('unidadMedidas.index');
     }
 
     /**
@@ -80,6 +93,7 @@ class UnidadMedidaController extends Controller
      */
     public function destroy(UnidadMedida $unidadMedida)
     {
-        //
+        $unidadMedida->delete();
+        return redirect()->route('unidadMedidas.index');
     }
 }

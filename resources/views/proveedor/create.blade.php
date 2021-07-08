@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="" method="POST">
+<form action="{{route('proveedors.store')}}" method="POST">
     @csrf
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
@@ -24,12 +24,12 @@
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Direccion</label>
-        <input id="direccion_negocio" name="direccion_negocio" type="text" class="form-control" tabindex="3" required autofocus autocomplete="direccion_negocio">
+        <label for="" class="col-form-label">Direccion del negocio</label>
+        <input id="direccion" name="direccion" type="text" class="form-control" tabindex="3" required autofocus autocomplete="direccion">
     <!--***************************************-->
     </div>
 <!--ERROR precio-->
-      <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('proveedors.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
   </form>
 @stop

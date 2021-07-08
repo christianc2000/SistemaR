@@ -3,11 +3,11 @@
 @section('title', 'CREAR PLATO')
 
 @section('content_header')
-    <h1>Crear Plato</h1>
+    <h1>Crear Unidad de medida</h1>
 @stop
 
 @section('content')
-<form action="{{route('platos.store')}}" method="POST">
+<form action="{{route('unidadMedidas.store')}}" method="POST">
     @csrf
     @if(count($errors)>0)
     <div class="alert alert-danger" rote="alert">
@@ -27,19 +27,19 @@
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" class="form-control" tabindex="2" required autofocus autocomplete="nombre">
+        <label for="" class="col-form-label">Descripcion</label>
+        <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="2" required autofocus autocomplete="descripcion">
     </div>
 <!--ERROR nombre-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Precio</label>
-        <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" tabindex="3" required autofocus autocomplete="precio">
+        <label for="" class="col-form-label">Abreviatura</label>
+        <input id="abreviatura" name="abreviatura" type="text" step="any" value="" class="form-control" tabindex="3" required autofocus autocomplete="abreviatura">
     <!--***************************************-->
     </div>
 <!--ERROR precio-->
-      <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('unidadMedidas.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
   </form>
 @stop

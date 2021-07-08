@@ -254,7 +254,7 @@ return [
         ],
         [
             'text'        => 'Proveedores',
-            'url'         => 'proveedor',
+            'url'         => 'proveedors',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',

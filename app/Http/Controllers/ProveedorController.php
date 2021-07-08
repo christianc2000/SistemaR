@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use App\Models\Proveedor;
 use App\Http\Requests\StoreMenu;
 use GuzzleHttp\Middleware;
 class ProveedorController extends Controller
@@ -40,7 +40,12 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proveedors= new Proveedor();
+        $proveedors->codigo=$request->get('codigo');
+        $proveedors->nombre_negocio=$request->get('nombre_negocio');
+        $proveedors->direccion=$request->get('direccion');
+        $proveedors->save();
+        return redirect()->route('proveedors.index');
     }
 
     /**
@@ -62,7 +67,7 @@ class ProveedorController extends Controller
      */
     public function edit(Proveedor $proveedor)
     {
-        //
+        return view('proveedor.edit',compact('proveedor'));
     }
 
     /**
@@ -74,7 +79,14 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        //
+        $request->validate([//para validar los inputs, y mostrar mensaje
+            'codigo'=>'required',
+            'nombre_negocio'=>'required',
+            'direccion'=>'required'
+        ]);
+
+       $proveedor->update($request->all());
+       return redirect()->route('proveedors.index');
     }
 
     /**
@@ -85,6 +97,8 @@ class ProveedorController extends Controller
      */
     public function destroy(Proveedor $proveedor)
     {
-        //
+
+        $proveedor->delete();
+        return redirect()->route('proveedors.index');
     }
 }

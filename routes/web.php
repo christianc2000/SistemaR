@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::resource('cargos', CargoController::class);
 Route::resource('platos', PlatoController::class);
 Route::resource('encargados', EncargadoController::class);
-Route::resource('proveedor', ProveedorController::class);
+Route::resource('proveedors', ProveedorController::class);
 Route::resource('unidadMedidas', UnidadMedidaController::class);
 
 Route::resource('trabajadors', TrabajadorController::class);

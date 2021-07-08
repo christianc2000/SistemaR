@@ -3,35 +3,35 @@
 @section('title', 'EDITAR PLATO')
 
 @section('content_header')
-    <h1>Editar Plato</h1>
+    <h1>Editar Unidad de medida</h1>
 @stop
 
 @section('content')
-<form action="{{route('platos.update',$plato)}}" method="POST">
+<form action="{{route('unidadMedidas.update',$unidadMedida)}}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
-      <input id="codigo" name="codigo" type="text" value="{{$plato->codigo}}" required autofocus autocomplete="codigo" class="form-control" tabindex="1">
+      <input id="codigo" name="codigo" type="text" value="{{$unidadMedida->codigo}}" required autofocus autocomplete="codigo" class="form-control" tabindex="1">
     </div>
 <!--ERROR codigo-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Nombre</label>
-        <input id="nombre" name="nombre" type="text" value="{{$plato->nombre}}" required autofocus autocomplete="nombre" class="form-control" tabindex="2">
+        <label for="" class="col-form-label">Descripcion</label>
+        <input id="descripcion" name="descripcion" type="text" value="{{$unidadMedida->descripcion}}" required autofocus autocomplete="descripcion" class="form-control" tabindex="2">
     </div>
 <!--ERROR nombre-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Precio</label>
-        <input id="precio" name="precio" type="number" step="any" value="{{$plato->precio}}" required autofocus autocomplete="precio" class="form-control" tabindex="3">
+        <label for="" class="col-form-label">Abreviatura</label>
+        <input id="abreviatura" name="abreviatura" type="text" step="any" value="{{$unidadMedida->abreviatura}}" required autofocus autocomplete="abreviatura" class="form-control" tabindex="3">
     <!--***************************************-->
     </div>
 <!--ERROR precio-->
 
-        <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <a href="{{route('unidadMedidas.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
 
   </form>
