@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-<a href="{{route('proveedor.create')}}" class="btn btn-primary mb-4" >CREAR</a>
+<a href="{{route('proveedors.create')}}" class="btn btn-primary mb-4" >CREAR</a>
 
-<table id="proveedor" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
+<table id="proveedors" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">CÓDIGO</th>
@@ -28,8 +28,8 @@
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="" method="POST">
-                    <a href="" class="btn btn-primary">Editar</a>
+                <form action="{{route('proveedors.destroy',$proveedor)}}" method="POST">
+                    <a href="{{route('proveedors.edit', $proveedor)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
