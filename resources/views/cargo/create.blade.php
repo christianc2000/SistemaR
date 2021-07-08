@@ -52,7 +52,7 @@
        </div>
 
 <!--ERROR perfil usuario-->
-      <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('cargos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
   </form>
 @stop
