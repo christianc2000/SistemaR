@@ -20,6 +20,7 @@ class CargoController extends Controller
     public function index()
     {
         $cargos= Cargo::all();
+
         return view('cargo.index',compact('cargos'));
     }
 
@@ -45,18 +46,30 @@ class CargoController extends Controller
         $cargos->codigo=$request->get('codigo');
         $cargos->descripcion=$request->get('descripcion');
         $cargos->sueldo=$request->get('sueldo');
-        $cargos->perfil_usuario=$request->get('opcion');
+        $cargos->perfil_usuario=$request->get('perfil_usuario');
         $cargos->save();
-        return redirect()->route('cargos.index');
-    }
+
+      /*  $campos=[
+            'codigo'=>'required|Integer',
+            'nombre'=>'required|string|max:30',
+            'precio'=>'requered|float',
+        ];
+        $mensaje=[
+             'required'=>'El :attribute es requerido',
+
+        ];
+        $this->validate($request, $campos, $mensaje);
+*/
+        return redirect()->route('cargos.index');//redirige a la vista index de la carpeta cargo
+     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cargo $cargo)
+    public function show($id)
     {
         //
     }
@@ -64,34 +77,46 @@ class CargoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Cargo $cargo)
     {
-        //
+        return view('cargo.edit',compact('cargo'));
+        // return $plato;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cargo $cargo)
+    public function update(Request $request,Cargo $cargo)
     {
-        //
+        $request->validate([//para validar los inputs, y mostrar mensaje
+            'codigo'=>'required',
+            'descripcion'=>'required',
+            'sueldo'=>'required',
+            'perfil_usuario'=>'required'
+        ]);
+
+
+       //$menu->slug=$request->nombre;
+       $cargo->update($request->all());
+       return redirect()->route('cargos.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cargo $cargo)
     {
-        //
+        $cargo->delete();
+        return redirect()->route('cargos.index');
     }
 }

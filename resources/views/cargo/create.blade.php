@@ -12,7 +12,7 @@
     @if(count($errors)>0)
     <div class="alert alert-danger" rote="alert">
      <ul>
-        @foreach($errors->all() as $erro)
+        @foreach($errors->all() as $error)
           {{$error}}
         @endforeach
     </ul>
@@ -21,7 +21,7 @@
     @endif
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
-      <input id="codigo" name="codigo" type="text" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
+      <input id="codigo" name="codigo" type="number" step="any" value="" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
     </div>
 <!--ERROR codigo-->
 
@@ -45,14 +45,14 @@
     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
       <div class="col-md-9 col-sm-9 col-xs-18">
 
-            <input type="radio" class="op" name="opcion" id="mod_opcion" value="1"> CON USUARIO
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="1"> CON USUARIO
             <br>
-            <input type="radio" class="op" name="opcion" id="mod_opcion" value="0"> SIN USUARIO
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="0"> SIN USUARIO
         </div>
        </div>
 
-<!--ERROR precio-->
-      <a href="" class="btn btn-secondary" tabindex="5">Cancelar</a>
+<!--ERROR perfil usuario-->
+      <a href="{{route('platos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
   </form>
 @stop

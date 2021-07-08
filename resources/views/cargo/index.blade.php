@@ -24,13 +24,15 @@
           <tr>
               <td>{{$cargo->codigo}}</td>
               <td>{{$cargo->descripcion}}</td>
-              <td>{{$cargo->precio}}</td>
+              <td>{{$cargo->sueldo}}</td>
               <td>{{$cargo->perfil_usuario}}</td>
               <td>
+
+
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="" method="POST">
-                    <a href="" class="btn btn-primary">Editar</a>
+                <form action="{{route('cargos.destroy',$cargo)}}" method="POST">
+                    <a href="{{route('cargos.edit', $cargo)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -53,7 +55,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#platos').DataTable({
+     $('#cargos').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );

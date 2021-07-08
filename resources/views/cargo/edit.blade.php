@@ -1,54 +1,53 @@
 @extends('adminlte::page')
 
-@section('title', 'CREAR PERSONA')
+@section('title', 'EDITAR CARGO')
 
 @section('content_header')
     <h1>Editar Cargo</h1>
 @stop
 
 @section('content')
-<form action="{{route('cargos.store')}}" method="POST">
+<form action="{{route('cargos.update',$cargo)}}" method="POST">
     @csrf
+    @method('PUT')
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
-      <input id="codigo" name="codigo" type="number"  value="{{$unidaM->codigo}}" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
+      <input id="codigo" name="codigo" type="number" step="any" value="{{$cargo->codigo}}" required autofocus autocomplete="codigo" class="form-control" tabindex="1">
     </div>
 <!--ERROR codigo-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Descripción</label>
-        <input id="descripcion" name="descripcion" type="text"  value="{{$unidadM->descripcion}}" class="form-control" tabindex="2" required autofocus autocomplete="descripcion">
+        <label for="" class="col-form-label">Descripcion</label>
+        <input id="descripcion" name="descripcion" type="text" value="{{$cargo->descripcion}}" required autofocus autocomplete="descripcion" class="form-control" tabindex="2">
     </div>
-<!--ERROR descripcion-->
+<!--ERROR Descripcion-->
 
 <!--***************************************-->
     <div class="mb-3">
         <label for="" class="col-form-label">Sueldo</label>
-        <input id="sueldo" name="sueldo" type="number"  value="{{$unidadM->sueldo}}" class="form-control" tabindex="3" required autofocus autocomplete="sueldo">
+        <input id="sueldo" name="sueldo" type="number" step="any" value="{{$cargo->sueldo}}" required autofocus autocomplete="sueldo" class="form-control" tabindex="3">
     <!--***************************************-->
     </div>
-<!--ERROR precio-->
-<div class="mb-3">
-    <label for="" class="col-form-label">Perfil Usuaio</label>
-    <!--RADIO BUTTON-->
-    <div class="form-check">
-        <input class="form-check-input" type="radio" value=true name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-          Con Usuario
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" value=false name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-          Sin Usuario
-        </label>
-      </div>
-    <!--***************************************-->
+<!--ERROR Sueldo-->
+<!--***************************************-->
+<div class="form-group">
+
+    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
+      <div class="col-md-9 col-sm-9 col-xs-18">
+
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="{{$cargo->perfil_usuario}}"  {{($cargo->perfil_usuario == 1) ? 'checked' : '' }}> CON USUARIO
+            <br>
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="{{$cargo->perfil_usuario}}"  {{($cargo->perfil_usuario == 0) ? 'checked' : '' }}> SIN USUARIO
+        </div>
+       </div>
+<!--***************************************-->
 </div>
-<!--ERROR perfil_usuario-->
-      <a href="{{route('cargos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
-      <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+<!--ERROR Sueldo-->
+
+        <a href="{{route('cargos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+
   </form>
 @stop
 

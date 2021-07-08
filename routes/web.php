@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\PlatoController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CargoController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\UnidadMedidaController;
@@ -22,11 +22,12 @@ Route::get('/', function () {
  return view('auth.login');
  //return view('welcome');
 });
+Route::resource('cargos', CargoController::class);
 Route::resource('platos', PlatoController::class);
 Route::resource('encargados', EncargadoController::class);
 Route::resource('proveedor', ProveedorController::class);
 Route::resource('unidadMedidas', UnidadMedidaController::class);
-Route::resource('cargos', CargoController::class);
+
 Route::resource('trabajadors', TrabajadorController::class);
 //Route::get('platos', [PlatoController::class,'index']);
 

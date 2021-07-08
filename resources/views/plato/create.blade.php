@@ -21,7 +21,7 @@
     @endif
     <div class="mb-3">
       <label for="" class="col-form-labelel">Código</label>
-      <input id="codigo" name="codigo" type="text" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
+      <input id="codigo" name="codigo" type="number" step="any" value="0.00" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
     </div>
 <!--ERROR codigo-->
 
