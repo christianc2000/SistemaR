@@ -36,9 +36,9 @@
     <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
       <div class="col-md-9 col-sm-9 col-xs-18">
 
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="{{$cargo->perfil_usuario}}"  {{($cargo->perfil_usuario == 1) ? 'checked' : '' }}> CON USUARIO
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="1"  {{($cargo->perfil_usuario == 1) ? 'checked': ''}}> CON USUARIO
             <br>
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="{{$cargo->perfil_usuario}}"  {{($cargo->perfil_usuario == 0) ? 'checked' : '' }}> SIN USUARIO
+            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="0"  {{($cargo->perfil_usuario == 0) ? 'checked' : '' }}> SIN USUARIO
         </div>
        </div>
 <!--***************************************-->

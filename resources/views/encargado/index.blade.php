@@ -13,9 +13,12 @@
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">CI</th>
-          <th scope="col">CODIGO</th>
-
-          <th scope="col">ACCIONES</th>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Proveedor</th>
+          <th scope="col">Accion</th>
        </tr>
     </thead>
     <TBODY>
