@@ -251,12 +251,19 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',//can verifica si tiene un permiso(rol)
         ],
-
+        
+        ['header' => 'Administrador'],
         [
             'text'        => 'Cargos',
             'url'         => 'cargos',
-
+            'can'  => 'users.index',//can verifica si tiene un permiso(rol)
         ],
+        [
+            'text'        => 'Usuarios',
+            'url'         => 'users',
+            'can'  => 'users.index',//can verifica si tiene un permiso(rol)
+        ],
+        ['header' => 'administrador y cajero'],
         [
             'text'        => 'Proveedores',
             'url'         => 'proveedors',
