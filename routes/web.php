@@ -11,6 +11,8 @@ use App\Http\Controllers\ProductoPlatoController;
 use App\Http\Controllers\ProductoPresaController;
 use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +39,8 @@ Route::resource('productosPresas', ProductoPresaController::class);
 Route::resource('encargados', EncargadoController::class);
 Route::resource('proveedors', ProveedorController::class);
 Route::resource('unidadMedidas', UnidadMedidaController::class);
+
+Route::resource('users', UserController::class);//usuarios
 
 Route::resource('trabajadors', TrabajadorController::class);
 //Route::get('platos', [PlatoController::class,'index']);
