@@ -14,7 +14,7 @@ class CreateCargosTable extends Migration
     public function up()
     {
         Schema::create('cargos', function (Blueprint $table) {
-            $table->unsignedInteger('codigo');
+            $table->unsignedInteger('codigo')->unique();
             $table->string('descripcion',30);
             $table->float('sueldo',8,2);
             $table->boolean('perfil_usuario')->nullable();

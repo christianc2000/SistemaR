@@ -22,6 +22,7 @@
        </tr>
     </thead>
     <TBODY>
+
         @foreach ($encargados as $encargado)
           <tr>
               <td>{{$encargado->ci}}</td>
@@ -33,8 +34,8 @@
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                <form action="" method="POST">
-                    <a href="" class="btn btn-primary">Editar</a>
+                <form action="{{route('encargados.destroy',$encargado->ci)}}" method="POST">
+                    <a href="{{route('encargados.edit',$encargado->ci)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="" method="POST">
+<form action="{{route('encargados.store',)}}" method="POST">
     @csrf
 
     <div class="mb-3">
@@ -52,21 +52,16 @@
      <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="nombre_negocio">
         <option selected>Seleccionar</option>
         @foreach ($proveedors as $proveedor)
-
-          <option value="M">Masculino</option>
-        <option value="F">Femenino</option>
+          <option value="{{$proveedor->codigo}}">{{$proveedor->nombre_negocio}}</option>
         @endforeach
       </select>
     </div>
-    'personas.ci',
-    'personas.nombre',
-    'personas.apellido',
-    'personas.direccion',
-    'personas.sexo',
-    'proveedors.nombre_negocio'
+
 <!--ERROR precio-->
-      <a href="" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('encargados.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+      <br>
+      <br>
   </form>
 @stop
 

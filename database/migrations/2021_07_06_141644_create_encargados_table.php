@@ -14,7 +14,7 @@ class CreateEncargadosTable extends Migration
     public function up()
     {
         Schema::create('encargados', function (Blueprint $table) {
-            $table->string('ci_e',10);
+            $table->string('ci_e',10)->unique();
             $table->unsignedInteger('cod_prov');
             $table->primary('ci_e');
             $table->foreign('ci_e')->references('ci')->on('personas')

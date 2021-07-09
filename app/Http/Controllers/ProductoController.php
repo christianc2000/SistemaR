@@ -14,13 +14,13 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        
+
         $productos= Producto::all();
 
         return view('productoCompra.index',compact('productos'));
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      *

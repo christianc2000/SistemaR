@@ -14,7 +14,7 @@ class CreateTrabajadorsTable extends Migration
     public function up()
     {
         Schema::create('trabajadors', function (Blueprint $table) {
-            $table->string('ci_trabajador',10);
+            $table->string('ci_trabajador',10)->unique();
             $table->boolean('estado')->nullable();
             $table->unsignedInteger('cod_cargo')->nullable()->unique();
             $table->primary('ci_trabajador');

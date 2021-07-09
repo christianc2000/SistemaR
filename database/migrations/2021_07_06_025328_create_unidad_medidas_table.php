@@ -14,7 +14,7 @@ class CreateUnidadMedidasTable extends Migration
     public function up()
     {
         Schema::create('unidad_medidas', function (Blueprint $table) {
-            $table->unsignedInteger('codigo');
+            $table->unsignedInteger('codigo')->unique();
             $table->string('descripcion',40);
             $table->string('abreviatura',5);
             $table->primary('codigo');
