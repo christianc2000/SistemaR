@@ -52,9 +52,10 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#proveedor').DataTable({
+     $('#proveedors').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );
 </script>
+
 @stop

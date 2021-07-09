@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Producto;
+
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class ProductoPresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,11 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        
-        $productos= Producto::all();
+        $productosPresas= Producto::all();
 
-        return view('productoCompra.index',compact('productos'));
+        return view('productoPresa.index',compact('productosPresas'));
     }
 
-   
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productoCompra.create');
+        return view('productoPresa.create');
     }
 
     /**
@@ -39,22 +37,24 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $productos= new Producto();
-        $productos->id=$request->get('id');
-        $productos->nombre=$request->get('nombre');
-        $productos->tipo_compra='1';
-        $productos->codigo=$request->get('codigo');
-        $productos->save();
-        return redirect()->route('productos.index');
+        $productosPresas= new Producto();
+        $productosPresas->id=$request->get('id');
+        $productosPresas->nombre=$request->get('nombre');
+        $productosPresas->tipo_menu=1;
+        $productosPresas->tipo_char='L';
+        $productosPresas->precio=$request->get('precio');
+        $productosPresas->codigo=$request->get('codigo');
+        $productosPresas->save();
+        return redirect()->route('productosPresas.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
         //
     }
@@ -62,42 +62,43 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Producto $productosPresa)
     {
-        return view('productoCompra.edit',compact('producto'));
+        return view('productoPresa.edit',compact('productosPresa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request,Producto $productosPresa)
     {
         $request->validate([//para validar los inputs, y mostrar mensaje
             'id'=>'required',
             'nombre'=>'required',
+            'precio'=>'required',
             'codigo'=>'required'
         ]);
 
-       $producto->update($request->all());
-       return redirect()->route('productos.index');
+       $productosPresa->update($request->all());
+       return redirect()->route('productosPresas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(Producto $productosPresa)
     {
-        $producto->delete();
-        return redirect()->route('productos.index');
+        $productosPresa->delete();
+        return redirect()->route('productosPresas.index');
     }
 }

@@ -20,7 +20,8 @@
     </thead>
     <TBODY>
         @foreach ($productos as $producto)
-          <tr>
+        @if ($producto->tipo_compra==true && $producto->tipo_char==null)
+            <tr>
               <td>{{$producto->id}}</td>
               <td>{{$producto->nombre}}</td>
               <td>{{$producto->codigo}}</td>
@@ -35,6 +36,8 @@
                 </form>
               </td>
           </tr>
+        @endif
+          
         @endforeach
     </TBODY>
 </table>
@@ -51,7 +54,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#platos').DataTable({
+     $('#productos').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );
