@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Producto;
+use App\Models\UnidadMedida;
 
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class ProductoPlatoController extends Controller
     public function index()
     {
         $productosPlatos= Producto::all();
-
-        return view('productoPlato.index',compact('productosPlatos'));
+        $unidadMedidas= UnidadMedida::all();//le paso los datos de la tabla unidadMedidas
+        return view('productoPlato.index',compact('productosPlatos', 'unidadMedidas'));
     }
 
     /**
@@ -26,7 +27,8 @@ class ProductoPlatoController extends Controller
      */
     public function create()
     {
-        return view('productoPlato.create');
+        $unidadMedidas= UnidadMedida::all();
+        return view('productoPlato.create', compact('unidadMedidas'));
     }
 
     /**

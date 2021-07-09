@@ -42,7 +42,13 @@
 <!--***************************************-->
 <div class="mb-3">
     <label for="" class="col-form-label">Codigo de la unidad de medida</label>
-    <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo">
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="codigo" name="codigo">
+        <option selected>unidades de medidas</option>
+        @foreach ($unidadMedidas as $unidadMedida)
+            <option value="{{$unidadMedida->codigo}}">{{$unidadMedida->descripcion}}</option>
+        @endforeach       
+      </select>
 </div>
 <!--ERROR nombre-->
 

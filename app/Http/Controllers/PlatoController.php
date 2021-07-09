@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenu;
 use Illuminate\Http\Request;
 use App\Models\Plato;
+use App\Models\UnidadMedida;
 use GuzzleHttp\Middleware;
 
 //use Illuminate\Support\Str; //para colocar los helper
@@ -22,8 +23,8 @@ class PlatoController extends Controller
     public function index()
     {
         $platos= Plato::all();
-
-        return view('plato.index',compact('platos'));
+        $unidadMedidas= UnidadMedida::all();//le paso los datos de la tabla unidadMedidas
+        return view('plato.index',compact('platos', 'unidadMedidas'));
     }
 
     /**

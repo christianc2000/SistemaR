@@ -27,7 +27,11 @@
                 <td>{{$productosPresa->id}}</td>
                 <td>{{$productosPresa->nombre}}</td>
                 <td>{{$productosPresa->precio}}</td>
-                <td>{{$productosPresa->codigo}}</td>
+                @foreach ($unidadMedidas as $unidadMedida)
+                    @if ($productosPresa->codigo==$unidadMedida->codigo)
+                        <td>{{$unidadMedida->descripcion}}</td>
+                    @endif
+                @endforeach 
                 <td>
                     <!--platos/{plato}/edit-->
                     <!---->

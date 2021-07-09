@@ -14,7 +14,7 @@
        <tr>
           <th scope="col">CÓDIGO</th>
           <th scope="col">NOMBRE</th>
-          <th scope="col">CODIGO DE LA UNIDAD DE MEDIDA</th>
+          <th scope="col">UNIDAD DE MEDIDA</th>
           <th scope="col">ACCIONES</th>
        </tr>
     </thead>
@@ -24,7 +24,13 @@
             <tr>
               <td>{{$producto->id}}</td>
               <td>{{$producto->nombre}}</td>
-              <td>{{$producto->codigo}}</td>
+              
+                @foreach ($unidadMedidas as $unidadMedida)
+                    @if ($producto->codigo==$unidadMedida->codigo)
+                        <td>{{$unidadMedida->descripcion}}</td>
+                    @endif
+                @endforeach 
+                
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
