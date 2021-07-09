@@ -3,11 +3,11 @@
 @section('title', 'CREAR PLATO')
 
 @section('content_header')
-    <h1>Crear Producto de compra</h1>
+    <h1>Crear Platos</h1>
 @stop
 
 @section('content')
-<form action="{{route('productos.store')}}" method="POST">
+<form action="{{route('productosPlatos.store')}}" method="POST">
     @csrf
     @if(count($errors)>0)
     <div class="alert alert-danger" rote="alert">
@@ -34,7 +34,14 @@
 
 <!--***************************************-->
 <div class="mb-3">
-    <label for="" class="col-form-label">Unidad de medida</label>
+    <label for="" class="col-form-label">Precio</label>
+    <input id="precio" name="precio" type="number" class="form-control" tabindex="2" required autofocus autocomplete="precio">
+</div>
+<!--ERROR precio-->
+
+<!--***************************************-->
+<div class="mb-3">
+    <label for="" class="col-form-label">unidad de medida</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
     <select class="form-select" aria-label="Default select example" id="codigo" name="codigo">
         <option selected>unidades de medidas</option>
@@ -45,7 +52,7 @@
 </div>
 <!--ERROR nombre-->
 
-      <a href="{{route('productos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('productosPlatos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
   </form>
 @stop

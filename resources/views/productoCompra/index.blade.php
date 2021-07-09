@@ -14,16 +14,23 @@
        <tr>
           <th scope="col">CÓDIGO</th>
           <th scope="col">NOMBRE</th>
-          <th scope="col">CODIGO DE LA UNIDAD DE MEDIDA</th>
+          <th scope="col">UNIDAD DE MEDIDA</th>
           <th scope="col">ACCIONES</th>
        </tr>
     </thead>
     <TBODY>
         @foreach ($productos as $producto)
-          <tr>
+        @if ($producto->tipo_compra==true && $producto->tipo_char==null)
+            <tr>
               <td>{{$producto->id}}</td>
               <td>{{$producto->nombre}}</td>
-              <td>{{$producto->codigo}}</td>
+              
+                @foreach ($unidadMedidas as $unidadMedida)
+                    @if ($producto->codigo==$unidadMedida->codigo)
+                        <td>{{$unidadMedida->descripcion}}</td>
+                    @endif
+                @endforeach 
+                
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
@@ -35,6 +42,8 @@
                 </form>
               </td>
           </tr>
+        @endif
+          
         @endforeach
     </TBODY>
 </table>
@@ -51,7 +60,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 <script>
   $(document).ready(function() {
-     $('#platos').DataTable({
+     $('#productos').DataTable({
          "lengthMenu":[[5,10,50,-1],[5,10,50,"Todo"]]
      });
  } );

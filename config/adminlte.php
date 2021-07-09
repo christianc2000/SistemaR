@@ -287,16 +287,20 @@ return [
             'label_color' => 'warning',
             'submenu'     =>[  
                 [
+                    'text'=> 'Productos de compra',
+                    'url' => 'productos',
+                ],
+                [
                     'text'=> 'Bebidas',
-                    'url' => '/platos',
+                    'url' => 'productosBebidas',
                 ],
                 [
                     'text'=> 'Platos',
-                    'url' => '',
+                    'url' => 'productosPlatos',
                 ],
                 [
-                    'text'=> 'Productos de compra',
-                    'url' => 'productos',
+                    'text'=> 'Presas',
+                    'url' => 'productosPresas',
                 ],
             ]
         ],

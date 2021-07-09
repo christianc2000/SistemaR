@@ -5,7 +5,10 @@ use App\Http\Controllers\PlatoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\EncargadoController;
+use App\Http\Controllers\ProductoBebidaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProductoPlatoController;
+use App\Http\Controllers\ProductoPresaController;
 use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\ProveedorController;
 /*
@@ -25,7 +28,12 @@ Route::get('/', function () {
 });
 Route::resource('cargos', CargoController::class);
 Route::resource('platos', PlatoController::class);
-Route::resource('productos', ProductoController::class);
+
+Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
+Route::resource('productosBebidas', ProductoBebidaController::class);
+Route::resource('productosPlatos', ProductoPlatoController::class);
+Route::resource('productosPresas', ProductoPresaController::class);
+
 Route::resource('encargados', EncargadoController::class);
 Route::resource('proveedors', ProveedorController::class);
 Route::resource('unidadMedidas', UnidadMedidaController::class);
