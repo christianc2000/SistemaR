@@ -20,7 +20,7 @@
     </thead>
     <TBODY>
         @foreach ($productos as $producto)
-        @if ($producto->tipo_compra==true && $producto->tipo_char==null)
+       
             <tr>
               <td>{{$producto->id}}</td>
               <td>{{$producto->nombre}}</td>
@@ -42,7 +42,7 @@
                 </form>
               </td>
           </tr>
-        @endif
+
           
         @endforeach
     </TBODY>

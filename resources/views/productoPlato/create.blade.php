@@ -3,7 +3,7 @@
 @section('title', 'CREAR PLATO')
 
 @section('content_header')
-    <h1>Crear Platos</h1>
+    <h1>Crear Producto</h1>
 @stop
 
 @section('content')
@@ -19,10 +19,6 @@
     </div>
 
     @endif
-    <div class="mb-3">
-      <label for="" class="col-form-labelel">Código</label>
-      <input id="id" name="id" type="number" class="form-control" tabindex="1"  required autofocus autocomplete="id">
-    </div>
 <!--ERROR codigo-->
 
 <!--***************************************-->
@@ -40,21 +36,45 @@
 <!--ERROR precio-->
 
 <!--***************************************-->
+<br/>
 <div class="mb-3">
     <label for="" class="col-form-label">unidad de medida</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
-    <select class="form-select" aria-label="Default select example" id="codigo" name="codigo">
-        <option selected>unidades de medidas</option>
+    <select class="form-select" aria-label="Default select example" id="codigo" name="codigo" >
         @foreach ($unidadMedidas as $unidadMedida)
             <option value="{{$unidadMedida->codigo}}">{{$unidadMedida->descripcion}}</option>
         @endforeach       
       </select>
 </div>
+
+<br/>
+
+<div class="mb-3">
+    <label for="" class="col-form-label">tipo de producto</label>
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto" >
+        <option value='B'>Bebida</option>
+        <option value='P'>Plato</option>
+        <option value='L'>Presa</option>
+        <option value=NULL>Ninguno</option>    
+      </select>
+</div>
+<br/>
+<div class="mb-3">
+    <label for="" class="col-form-label">Uso de producto</label>
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" >
+        <option value=0>Ingrediente</option>
+        <option value=1>Menu</option> 
+      </select>
+</div>
+<br/>
 <!--ERROR nombre-->
 
       <a href="{{route('productosPlatos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
   </form>
+  <br/>
 @stop
 
 @section('css')

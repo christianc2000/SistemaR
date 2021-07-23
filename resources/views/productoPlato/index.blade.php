@@ -3,7 +3,7 @@
 @section('title', 'INDEX PRODUCTO PLATO')
 
 @section('content_header')
-    <h1>Lista de productos menu de los platos</h1>
+    <h1>Lista de productos</h1>
 @stop
 
 @section('content')
@@ -13,18 +13,18 @@
     <thead class="bg-dark text-white">
         
        <tr>
-          <th scope="col">CÓDIGO</th>
           <th scope="col">NOMBRE</th>
           <th scope="col">PRECIO</th>
           <th scope="col">UNIDAD DE MEDIDA</th>
+          <th scope="col">TIPO DE PRODUCTO</th>
           <th scope="col">ACCIONES</th>
+ 
        </tr>
     </thead>
     <TBODY>
         @foreach ($productosPlatos as $productosPlato)
-            @if ($productosPlato->tipo_menu==true && $productosPlato->tipo_char=='P')
                 <tr>
-                <td>{{$productosPlato->id}}</td>
+
                 <td>{{$productosPlato->nombre}}</td>
                 <td>{{$productosPlato->precio}}</td>
 
@@ -33,6 +33,15 @@
                         <td>{{$unidadMedida->descripcion}}</td>
                     @endif
                 @endforeach 
+               <td> @if ($productosPlato->tipo_compra == 1 )
+                    tipo compra <br/>
+                @else
+                    tipo venta <br/>
+                @endif
+                @if ($productosPlato->tipo_char =='B')
+                Bebida
+            @endif
+               </td>
 
                 <td>
                     <!--platos/{plato}/edit-->
@@ -45,7 +54,7 @@
                     </form>
                 </td>
             </tr>
-            @endif
+
             
         @endforeach
     </TBODY>

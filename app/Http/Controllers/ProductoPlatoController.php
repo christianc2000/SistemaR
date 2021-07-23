@@ -31,22 +31,28 @@ class ProductoPlatoController extends Controller
         return view('productoPlato.create', compact('unidadMedidas'));
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+
         $productosPlatos= new Producto();
-        $productosPlatos->id=$request->get('id');
+
         $productosPlatos->nombre=$request->get('nombre');
-        $productosPlatos->tipo_menu=1;
-        $productosPlatos->tipo_char='P';
+        $productosPlatos->tipo_menu=$request->get('usoProducto');
+        if ($request->get('tipoProducto')!='NULL'){
+        $productosPlatos->tipo_char=$request->get('tipoProducto');
+        }
         $productosPlatos->precio=$request->get('precio');
         $productosPlatos->codigo=$request->get('codigo');
         $productosPlatos->save();
+
+         
         return redirect()->route('productosPlatos.index');
     }
 
@@ -68,8 +74,9 @@ class ProductoPlatoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Producto $productosPlato)
-    {
-        return view('productoPlato.edit',compact('productosPlato'));
+    {  
+        $unidadMedidas= UnidadMedida::all();
+        return view('productoPlato.edit',compact('productosPlato,unidadMedidas'));
     }
 
     /**

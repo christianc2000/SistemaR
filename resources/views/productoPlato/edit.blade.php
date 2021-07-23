@@ -10,10 +10,6 @@
 <form action="{{route('productosPlatos.update',$productosPlato)}}" method="POST">
     @csrf
     @method('PUT')
-    <div class="mb-3">
-      <label for="" class="col-form-labelel">Código</label>
-      <input id="id" name="id" type="text" value="{{$productosPlato->id}}" required autofocus autocomplete="id" class="form-control" tabindex="1">
-    </div>
 <!--ERROR codigo-->
 
 <!--***************************************-->
@@ -31,11 +27,39 @@
 <!--ERROR precio-->
 
 <!--***************************************-->
-    <div class="mb-3">
-        <label for="" class="col-form-label">Codigo unidad de medida</label>
-        <input id="codigo" name="codigo" type="number" step="any" value="{{$productosPlato->codigo}}" required autofocus autocomplete="codigo" class="form-control" tabindex="3">
-    <!--***************************************-->
-    </div>
+<br/>
+<div class="mb-3">
+    <label for="" class="col-form-label">unidad de medida</label>
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="codigo" name="codigo" >
+        @foreach ($unidadMedidas as $unidadMedida)
+            <option value="{{$unidadMedida->codigo}}">{{$unidadMedida->descripcion}}</option>
+        @endforeach       
+      </select>
+</div>
+
+<br/>
+
+<div class="mb-3">
+    <label for="" class="col-form-label">tipo de producto</label>
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto" >
+        <option value='B'>Bebida</option>
+        <option value='P'>Plato</option>
+        <option value='L'>Presa</option>
+        <option value=NULL>Ninguno</option>    
+      </select>
+</div>
+<br/>
+<div class="mb-3">
+    <label for="" class="col-form-label">Uso de producto</label>
+    {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
+    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" >
+        <option value=0>Ingrediente</option>
+        <option value=1>Menu</option> 
+      </select>
+</div>
+<br/>
 <!--ERROR precio-->
 
         <a href="{{route('productosPlatos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
