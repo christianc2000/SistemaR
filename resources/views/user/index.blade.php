@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'CARGOS')
+@section('title', 'USUARIOS')
 
 @section('content_header')
     <h1>Lista de Usuarios</h1>
@@ -30,7 +30,8 @@
                 <!--platos/{plato}/edit-->
                 <!---->
                 <form action="{{route('users.destroy',$user)}}" method="POST">
-                    <a href="{{route('users.edit', $user)}}" class="btn btn-primary">Asignar rol</a>
+                    {{-- <a href="{{route('users.edit', $user)}}" class="btn btn-primary">Asignar rol</a> --}}
+                    <a href="{{route('users.edit', $user)}}" class="btn btn-primary">Editar</a>
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>

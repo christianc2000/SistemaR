@@ -1,0 +1,95 @@
+@extends('adminlte::page')
+
+@section('title', 'CREAR ENCARGADO')
+
+@section('content_header')
+    <h1>Crear trabajador</h1>
+@stop
+
+@section('content')
+<form action="{{route('trabajadors.store')}}" method="POST">
+    @csrf
+
+    <div class="mb-3">
+      <label for="" class="col-form-labelel">CI</label>
+      <input id="ci" name="ci" type="text" class="form-control" tabindex="1"  required autofocus autocomplete="ci">
+    </div>
+<!--ERROR codigo-->
+
+<!--***************************************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Nombre</label>
+        <input id="nombre" name="nombre" type="text" class="form-control" tabindex="2" required autofocus autocomplete="nombre">
+    </div>
+<!--ERROR nombre-->
+
+<!--****************APELLIDOS***********************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Apellido</label>
+        <input id="apellido" name="apellido" type="text" class="form-control" tabindex="3" required autofocus autocomplete="apellido">
+    <!--***************************************-->
+    </div>
+    <!--****************DIRECCION***********************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Dirección</label>
+        <input id="direccion" name="direccion" type="text" class="form-control" tabindex="3" required autofocus autocomplete="direccion">
+    <!--***************************************-->
+    </div>
+    <!--*************sexo**********************-->
+    <div class="form-group">
+
+        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="sex">Sexo</label>
+          <div class="col-md-9 col-sm-9 col-xs-18">
+
+                <input type="radio" class="op" name="sexo" id="sexoM" value="M"> <label for="sexoM"> Masculino</label>
+
+                <input type="radio" class="op" name="sexo" id="sexoF" value="F"> <label for="sexoF">Femenino</label> 
+                <br>
+            @error('sexo')
+                <small>*{{$message}}</small>
+            @enderror
+          </div>
+           
+    </div>
+     <!--*************cargo**********************-->
+     <div>
+        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="">Seleccionar Cargo</label>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="codCargo" >
+        <option selected>Seleccionar</option>
+        @foreach ($cargos as $cargo)
+          <option value="{{$cargo->codigo}}" >{{$cargo->descripcion}}</option>
+        @endforeach
+      </select>
+      <br>
+      @error('codCargo')
+          <small>*{{$message}} </small>
+      @enderror
+    </div>
+    <!--*************ESTADO DEL TRABAJADOR**********************-->
+    <div>
+        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name">Seleccionar Estado</label>
+     <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="estado">
+        {{-- <option selected >Seleccionar</option> --}}
+          <option value='1' selected>activo</option>
+          <option value='0'  >inactivo</option>
+      </select>
+      <br>
+      @error('estado')
+          <small>*{{$message}} </small>
+      @enderror
+    </div>
+<!--ERROR precio-->
+      <a href="{{route('trabajadors.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
+      <br>
+      <br>
+  </form>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+
+@stop

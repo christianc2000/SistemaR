@@ -3,11 +3,11 @@
 @section('title', 'CREAR CARGO')
 
 @section('content_header')
-    <h1>Crear Cargo</h1>
+    <h1>Crear Usuario</h1>
 @stop
 
 @section('content')
-<form action="{{route('cargos.store')}}" method="POST">
+<form action="{{route('users.store')}}" method="POST">
     @csrf
     @if(count($errors)>0)
     <div class="alert alert-danger" rote="alert">
@@ -20,39 +20,66 @@
 
     @endif
     <div class="mb-3">
-      <label for="" class="col-form-labelel">Código</label>
-      <input id="codigo" name="codigo" type="number" step="any" value="" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
+      <label for="" class="col-form-labelel">Nombre</label>
+      <input id="codigo" name="name" type="text" step="any" value="" class="form-control" tabindex="1"  required autofocus autocomplete="codigo">
+      @error('name')
+        <br>
+            <small>*{{$message}} </small>
+        @enderror
     </div>
-<!--ERROR codigo-->
+<!--ERROR NOmbre-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Descripcion</label>
-        <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="2" required autofocus autocomplete="descripcion">
+        <label for="" class="col-form-label">Correo electronico</label>
+        <input id="descripcion" name="email" type="email" class="form-control" tabindex="2" required autofocus autocomplete="descripcion">
+        @error('email')
+        <br>
+            <small>*{{$message}} </small>
+        @enderror
     </div>
-<!--ERROR nombre-->
+<!--ERROR correo electronico-->
 
 <!--***************************************-->
     <div class="mb-3">
-        <label for="" class="col-form-label">Sueldo</label>
-        <input id="sueldo" name="sueldo" type="number" step="any" value="0.00" class="form-control" tabindex="3" required autofocus autocomplete="sueldo">
+        <label for="" class="col-form-label">Contraseña</label>
+        <input id="sueldo" name="password" type="password" step="any" class="form-control" tabindex="3" required autofocus autocomplete="sueldo">
+        @error('password')
+        <br>
+            <small>*{{$message}} </small>
+        @enderror
     <!--***************************************-->
     </div>
-<!--ERROR precio-->
-<!--*************perfil usuario**************************-->
-<div class="form-group">
+<!--ERROR contraseña-->
 
-    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
-      <div class="col-md-9 col-sm-9 col-xs-18">
-
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="1"> CON USUARIO
-            <br>
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="0"> SIN USUARIO
+<!--***************************************-->
+<div class="mb-3">
+    <label class="control-label col-md-2 col-sm-3 col-xs-12">Lista de roles</label>
+    @foreach ($roles as $role)
+        <div class="form-check">
+                <input type="radio" class="op" name="roles" id="roles" value="{{$role->id}}"> 
+                <label for="roles">{{$role->name}} </label>
         </div>
-       </div>
+    @endforeach
+</div>
+
+<!--asignar rol-->
+<!--*************trabajador para el cual crear ususario**************************-->
+<div class="">
+    <h5>electiva</h5>
+    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="">Seleccionar trabajador</label>
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ci_trab" >
+    <option selected value="">Sin trabajador</option>
+    @foreach ($users as $user)
+    {{-- <option value="{{$user->ci}}" >{{$user}} </option> --}}
+      <option value="{{$user->ci}}" >{{$user->nombre}} {{$user->ap}} </option>
+    @endforeach
+  </select>
+</div>
+
 
 <!--ERROR perfil usuario-->
-      <a href="{{route('cargos.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+      <a href="{{route('users.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
       <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
   </form>
 @stop

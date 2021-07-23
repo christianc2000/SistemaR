@@ -1,69 +1,54 @@
 @extends('adminlte::page')
 
-@section('title', 'EDITAR CARGO')
+@section('title', 'EDITAR PLATO')
 
 @section('content_header')
-    <h1>Asignar Rol</h1>
+    <h1>Editar Usuario</h1>
 @stop
 
 @section('content')
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{session('info')}}</strong>
-        </div>
-    @endif
-
-<form action="{{route('users.update',$user)}}" method="POST">
+<form action="{{route('users.update',$user->id)}}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-3">
-      <label for="" class="col-form-labelel">Nombre</label>
-      <input id="name" name="name" type="text" step="any" value="{{$user->name}}" required autofocus autocomplete="name" class="form-control" tabindex="1">
+      <label for="" class="col-form-labelel">Nombre de usuario</label>
+      <input id="id" name="name" type="text" value="{{$user->name}}" required autofocus autocomplete="id" class="form-control" tabindex="1">
     </div>
-<!--ERROR Nombre-->
+<!--ERROR codigo-->
 
 <!--***************************************-->
-    <h2 class="h5">Listado de roles</h2>
-    @foreach ($roles as $role)
-        <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{$role->id}}" id="flexCheckDefault" name="roles[]">
-                <label class="form-check-label" for="flexCheckDefault">
-                {{$role->name}} 
-                </label>
-        </div>
-    @endforeach
-
-    {{-- <div class="mb-3">
-        <label for="" class="col-form-label">Email</label>
-        <input id="email" name="email" type="email" value="{{$user->email}}" required autofocus autocomplete="email" class="form-control" tabindex="2">
-    </div> --}}
-<!--ERROR Listado de roles-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Correo electronico</label>
+        <input id="nombre" name="email" type="text" value="{{$user->email}}" required autofocus autocomplete="nombre" class="form-control" tabindex="2">
+    </div>
+<!--ERROR nombre-->
 
 <!--***************************************-->
-    {{-- <div class="mb-3">
-        <label for="" class="col-form-label">Contraseña</label>
-        <input id="password" name="password" type="password" step="any" value="{{$user->password}}" required autofocus autocomplete="password" class="form-control" tabindex="3">
-    <!--***************************************-->
-    </div> --}}
-<!--ERROR password-->
-<!--***************************************-->
-{{-- <div class="form-group">
-
-    <label class="control-label col-md-2 col-sm-3 col-xs-12" for="first-name"></label>
-      <div class="col-md-9 col-sm-9 col-xs-18">
-
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="1"  {{($cargo->perfil_usuario == 1) ? 'checked': ''}}> CON USUARIO
-            <br>
-            <input type="radio" class="op" name="perfil_usuario" id="perfil_usuario" value="0"  {{($cargo->perfil_usuario == 0) ? 'checked' : '' }}> SIN USUARIO
-        </div>
-       </div> --}}
-<!--***************************************-->
+<div class="mb-3">
+    <label for="" class="col-form-label">Contraseña</label>
+    <input id="precio" name="password" type="password" value="{{$user->password}}" required autofocus autocomplete="precio" class="form-control" tabindex="2">
 </div>
-<!--ERROR Sueldo-->
+<!--ERROR precio-->
 
-        <a href="{{route('users.index')}}" class="btn btn-secondary  mt-2" tabindex="5">Cancelar</a>
-        <button type="submit" class="btn btn-primary mt-2" tabindex="4">Asignar rol</button>
+<!--***************************************-->
+    <div class="mb-3">
+        <label for="" class="col-form-label">Editar trabajador al que pertenece</label>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ci_trab" >
+            {{-- <option selected>Seleccionar</option> --}}
+            <option value='{{$user->ci_trab}}' selected>Mantener</option>
+            <option value=''>Quitar trabajador</option>
+            @foreach ($users as $user)
+            {{-- <option value="{{$user->ci}}" >{{$user}} </option> --}}
+              <option value="{{$user->ci}}" >{{$user->nombre}} {{$user->ap}} </option>
+            @endforeach
+        </select>
 
+    <!--***************************************-->
+    </div>
+<!--ERROR precio-->
+
+        <a href="{{route('users.index')}}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
   </form>
 @stop
 

@@ -15,8 +15,9 @@ class CreateTrabajadorsTable extends Migration
     {
         Schema::create('trabajadors', function (Blueprint $table) {
             $table->string('ci_trabajador',10)->unique();
-            $table->boolean('estado')->nullable();
-            $table->unsignedInteger('cod_cargo')->nullable()->unique();
+            $table->dateTime('fecha_inico', $precision = 0);
+            $table->boolean('estado');
+            $table->unsignedInteger('cod_cargo');
             $table->primary('ci_trabajador');
             $table->foreign('ci_trabajador')->references('ci')->on('personas')
                   ->onDelete('cascade')

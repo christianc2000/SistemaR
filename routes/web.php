@@ -28,21 +28,28 @@ Route::get('/', function () {
  return view('auth.login');
  //return view('welcome');
 });
-Route::resource('cargos', CargoController::class);
-Route::resource('platos', PlatoController::class);
 
-Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
-Route::resource('productosBebidas', ProductoBebidaController::class);
-Route::resource('productosPlatos', ProductoPlatoController::class);
-Route::resource('productosPresas', ProductoPresaController::class);
+Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
 
-Route::resource('encargados', EncargadoController::class);
-Route::resource('proveedors', ProveedorController::class);
-Route::resource('unidadMedidas', UnidadMedidaController::class);
+    Route::resource('cargos', CargoController::class);
+    Route::resource('platos', PlatoController::class);
+    
+    Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
+    Route::resource('productosBebidas', ProductoBebidaController::class);
+    Route::resource('productosPlatos', ProductoPlatoController::class);
+    Route::resource('productosPresas', ProductoPresaController::class);
+    
+    Route::resource('encargados', EncargadoController::class);
+    Route::resource('proveedors', ProveedorController::class);
+    Route::resource('unidadMedidas', UnidadMedidaController::class);
+    
+    Route::resource('users', UserController::class);//usuarios
+    
+    Route::resource('trabajadors', TrabajadorController::class);
 
-Route::resource('users', UserController::class);//usuarios
+});
 
-Route::resource('trabajadors', TrabajadorController::class);
+
 //Route::get('platos', [PlatoController::class,'index']);
 
 

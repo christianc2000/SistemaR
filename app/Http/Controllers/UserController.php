@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Models\Trabajador;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
@@ -29,7 +31,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $users=Trabajador::join('personas','personas.ci', '=', 'trabajadors.ci_trabajador')
+        ->join("Cargos","Cargos.codigo","=","trabajadors.cod_cargo")
+        ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
+        ->select('personas.ci','personas.nombre','personas.apellido as ap')
+        ->where('cargos.perfil_usuario','=', 1)
+        ->whereNull('users.ci_trab')
+        ->get();
+
+        $roles=Role::all();
+        
+        return view('user.create', compact('users', 'roles'));
     }
 
     /**
@@ -38,15 +50,16 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         
         $users= new User();
-        $users->id=$request->get('codigo');
         $users->name=$request->get('name');
         $users->email=$request->get('email');
-        $users->password=bycrept($request->get('password'));
+        $users->password=bcrypt($request->get('password'));
+        $users->ci_trab=$request->get('ci_trab');
         $users->save();
+        // User::create($request->all());
         return redirect()->route('users.index');//redirige a la vista index de la carpeta cargo
     }
 
@@ -69,8 +82,20 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles=Role::all();
-        return view('user.edit',compact('user', 'roles'));
+        //*** asignar rol */
+        // $roles=Role::all();
+        // return view('user.editarRol',compact('user', 'roles'));
+        $users=Trabajador::join('personas','personas.ci', '=', 'trabajadors.ci_trabajador')
+        ->join("Cargos","Cargos.codigo","=","trabajadors.cod_cargo")
+        ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
+        ->select('personas.ci','personas.nombre','personas.apellido as ap')
+        ->where('cargos.perfil_usuario','=', 1)
+        ->whereNull('users.ci_trab')
+        // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
+        ->get();
+
+        return view('user.edit',compact('user', 'users'));
+        
     }
 
     /**
@@ -80,12 +105,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(UserRequest $request,$ci)
     {
-        $user->roles()->sync($request->roles);
-
-        
-       return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
+    //     $user->roles()->sync($request->roles);
+    //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
+        $user=User::find($ci);
+        $user->name=$request->get('name');
+        $user->email=$request->get('email');
+        $user->password=$request->get('password');
+        $user->ci_trab=null;
+        $user->save();
+        $user->ci_trab=$request->get('ci_trab');
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -94,8 +126,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index');
     }
 }
