@@ -287,28 +287,16 @@ return [
         ],
 
         [
-            'text'        => 'Productos',
+            'text'        => 'Inventarios',
             'icon'        => 'far fa-fw fa-file',
             
             'label'       => 'CRUD',
             'label_color' => 'warning',
             'submenu'     =>[  
                 [
-                    'text'=> 'Productos de compra',
-                    'url' => 'productos',
-                ],
-                [
-                    'text'=> 'Bebidas',
-                    'url' => 'productosBebidas',
-                ],
-                [
-                    'text'=> 'Platos',
+                    'text'=> 'Productos',
                     'url' => 'productosPlatos',
-                ],
-                [
-                    'text'=> 'Presas',
-                    'url' => 'productosPresas',
-                ],
+                ]
             ]
         ],
         [

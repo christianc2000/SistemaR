@@ -33,14 +33,24 @@
                         <td>{{$unidadMedida->descripcion}}</td>
                     @endif
                 @endforeach 
-               <td> @if ($productosPlato->tipo_compra == 1 )
+               <td> @if ($productosPlato->tipo_compra && !$productosPlato->tipo_menu)
                     tipo compra <br/>
-                @else
-                    tipo venta <br/>
-                @endif
+                    @endif
+                    @if (!$productosPlato->tipo_compra && $productosPlato->tipo_menu)
+                    tipo menu <br/>
+                    @endif
+                    @if ($productosPlato->tipo_compra && $productosPlato->tipo_menu)
+                    tipo compra y menu <br/>
+                    @endif
                 @if ($productosPlato->tipo_char =='B')
                 Bebida
-            @endif
+                @endif
+                @if ($productosPlato->tipo_char =='L')
+                Presa
+                @endif
+                @if ($productosPlato->tipo_char =='P')
+                Plato
+                @endif
                </td>
 
                 <td>
