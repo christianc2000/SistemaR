@@ -12,6 +12,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:users.index')->only('index');
+        $this->middleware('can:users.create')->only('create', 'store');
+        $this->middleware('can:users.edit')->only('edit', 'update');
+        $this->middleware('can:users.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -59,8 +67,11 @@ class UserController extends Controller
         $users->password=bcrypt($request->get('password'));
         $users->ci_trab=$request->get('ci_trab');
         $users->save();
+        $users->assignRole($request->rol);//crear rol
+        // $users->syncRoles($request->rol);//sincronizar rol
+    //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
         // User::create($request->all());
-        return redirect()->route('users.index');//redirige a la vista index de la carpeta cargo
+        return redirect()->route('users.index')->with('info', 'Se creó un nuevo usuario');//redirige a la vista index de la carpeta cargo
     }
 
     /**
@@ -83,7 +94,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //*** asignar rol */
-        // $roles=Role::all();
+        $roles=Role::all();
         // return view('user.editarRol',compact('user', 'roles'));
         $users=Trabajador::join('personas','personas.ci', '=', 'trabajadors.ci_trabajador')
         ->join("Cargos","Cargos.codigo","=","trabajadors.cod_cargo")
@@ -94,7 +105,7 @@ class UserController extends Controller
         // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
         ->get();
 
-        return view('user.edit',compact('user', 'users'));
+        return view('user.edit',compact('user', 'users', 'roles'));
         
     }
 
@@ -107,16 +118,19 @@ class UserController extends Controller
      */
     public function update(UserRequest $request,$ci)
     {
+    // public function update(Request $request,User $user)
+
     //     $user->roles()->sync($request->roles);
     //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
         $user=User::find($ci);
         $user->name=$request->get('name');
         $user->email=$request->get('email');
-        $user->password=$request->get('password');
+        $user->password=bcrypt($request->get('password'));
         $user->ci_trab=null;
         $user->save();
         $user->ci_trab=$request->get('ci_trab');
         $user->save();
+        $user->syncRoles($request->rol);//sincronizar rol
         return redirect()->route('users.index');
     }
 

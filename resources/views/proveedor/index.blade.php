@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-@can('cagos.create')
+@can('proveedors.create')
     <a href="{{route('proveedors.create')}}" class="btn btn-primary mb-4" >CREAR</a> 
 @endcan
 
@@ -30,7 +30,7 @@
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
-                @can('cargos.destroy')
+                @can('proveedors.destroy')
                     <form action="{{route('proveedors.destroy',$proveedor)}}" method="POST">
                         <a href="{{route('proveedors.edit', $proveedor)}}" class="btn btn-primary">Editar</a>
                         @csrf  <!--metodo para añadir token a un formulario-->

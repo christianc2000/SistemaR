@@ -27,6 +27,7 @@ class UserRequest extends FormRequest
             'name'=>'required',
             'email'=>'required',
             'password'=>'required',
+            'rol'=>'required'
             // 'ci_trab'=>'required|max:10',
         ];
         
@@ -37,6 +38,7 @@ class UserRequest extends FormRequest
         'name.required'=>'ingrese el nombre de usuario',
         'email.required'=> 'debe ingresar un email',
         'password.numeric'=> 'debe ingresar una contraseña',
+        'rol.required'=> 'debe seleccionar un rol',
         // 'ci_trab.required'=> 'debe seleccionar el estado del trabajador',
         ];
     }

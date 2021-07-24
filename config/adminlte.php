@@ -256,12 +256,19 @@ return [
         [
             'text'        => 'Cargos',
             'url'         => 'cargos',
-            'can'  => 'users.index',//can verifica si tiene un permiso(rol)
+            'can'  => 'cargos.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'        => 'Usuarios',
             'url'         => 'users',
+            'icon' => 'fas fa-users fa-fw',
             'can'  => 'users.index',//can verifica si tiene un permiso(rol)
+        ],
+        [
+            'text'        => 'Roles',
+            'url'         => 'roles',
+            'icon'        => 'fas fa-users-cog fa-fw',
+        //    'can'  => 'users.index',//can verifica si tiene un permiso(rol)
         ],
         ['header' => 'administrador y cajero'],
         [
@@ -270,6 +277,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',
+            'can'  => 'proveedors.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'    => 'Persona',

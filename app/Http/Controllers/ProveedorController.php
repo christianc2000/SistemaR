@@ -10,6 +10,11 @@ class ProveedorController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+
+        $this->middleware('can:proveedors.index')->only('index');
+        $this->middleware('can:proveedors.create')->only('create', 'store');
+        $this->middleware('can:proveedors.edit')->only('edit', 'update');
+        $this->middleware('can:proveedors.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.
