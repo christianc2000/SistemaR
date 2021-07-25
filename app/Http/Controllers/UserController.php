@@ -27,9 +27,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users= User::all();
+        $users = User::all();
 
-        return view('user.index',compact('users'));
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -39,16 +39,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users=Trabajador::join('personas','personas.ci', '=', 'trabajadors.ci_trabajador')
-        ->join("Cargos","Cargos.codigo","=","trabajadors.cod_cargo")
-        ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-        ->select('personas.ci','personas.nombre','personas.apellido as ap')
-        ->where('cargos.perfil_usuario','=', 1)
-        ->whereNull('users.ci_trab')
-        ->get();
+        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
+            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
+            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
+            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
+            ->where('cargos.perfil_usuario', '=', 1)
+            ->whereNull('users.ci_trab')
+            ->get();
 
-        $roles=Role::all();
-        
+        $roles = Role::all();
+
         return view('user.create', compact('users', 'roles'));
     }
 
@@ -60,18 +60,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        
-        $users= new User();
-        $users->name=$request->get('name');
-        $users->email=$request->get('email');
-        $users->password=bcrypt($request->get('password'));
-        $users->ci_trab=$request->get('ci_trab');
+
+        $users = new User();
+        $users->name = $request->get('name');
+        $users->email = $request->get('email');
+        $users->password = bcrypt($request->get('password'));
+        $users->ci_trab = $request->get('ci_trab');
         $users->save();
-        $users->assignRole($request->rol);//crear rol
+        $users->assignRole($request->rol); //crear rol
         // $users->syncRoles($request->rol);//sincronizar rol
-    //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
+        //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
         // User::create($request->all());
-        return redirect()->route('users.index')->with('info', 'Se creó un nuevo usuario');//redirige a la vista index de la carpeta cargo
+        return redirect()->route('users.index')->with('info', 'Se creó un nuevo usuario'); //redirige a la vista index de la carpeta cargo
     }
 
     /**
@@ -94,19 +94,18 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //*** asignar rol */
-        $roles=Role::all();
+        $roles = Role::all();
         // return view('user.editarRol',compact('user', 'roles'));
-        $users=Trabajador::join('personas','personas.ci', '=', 'trabajadors.ci_trabajador')
-        ->join("Cargos","Cargos.codigo","=","trabajadors.cod_cargo")
-        ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-        ->select('personas.ci','personas.nombre','personas.apellido as ap')
-        ->where('cargos.perfil_usuario','=', 1)
-        ->whereNull('users.ci_trab')
-        // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
-        ->get();
+        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
+            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
+            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
+            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
+            ->where('cargos.perfil_usuario', '=', 1)
+            ->whereNull('users.ci_trab')
+            // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
+            ->get();
 
-        return view('user.edit',compact('user', 'users', 'roles'));
-        
+        return view('user.edit', compact('user', 'users', 'roles'));
     }
 
     /**
@@ -116,21 +115,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request,$ci)
+    public function update(UserRequest $request, $ci)
     {
-    // public function update(Request $request,User $user)
+        // public function update(Request $request,User $user)
 
-    //     $user->roles()->sync($request->roles);
-    //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
-        $user=User::find($ci);
-        $user->name=$request->get('name');
-        $user->email=$request->get('email');
-        $user->password=bcrypt($request->get('password'));
-        $user->ci_trab=null;
+        //     $user->roles()->sync($request->roles);
+        //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
+        $user = User::find($ci);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        if ($request->password != 'xxxxxxxxx') {
+            $user->password = bcrypt($request->get('password'));
+        }
+        $user->ci_trab = null;
         $user->save();
-        $user->ci_trab=$request->get('ci_trab');
+        $user->ci_trab = $request->get('ci_trab');
         $user->save();
-        $user->syncRoles($request->rol);//sincronizar rol
+        $user->syncRoles($request->rol); //sincronizar rol
         return redirect()->route('users.index');
     }
 
