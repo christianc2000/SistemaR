@@ -28,21 +28,22 @@
         <!--***************************************-->
         <div class="mb-3">
             <label for="" class="col-form-label">Contraseña</label>
-            <input id="precio" name="password" type="password" value="{{ $user->password }}" required autofocus
-                autocomplete="precio" class="form-control" tabindex="2">
+            <input id="precio" name="password" type="password" value="xxxxxxxxx" required autofocus autocomplete="precio"
+                class="form-control" tabindex="2">
         </div>
         <!--ERROR contraseña-->
 
         <!--***************************************-->
+
         <div class="mb-3">
             <label for="" class="col-form-label">Editar trabajador al que pertenece</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ci_trab">
                 {{-- <option selected>Seleccionar</option> --}}
                 <option value='{{ $user->ci_trab }}' selected>Mantener</option>
                 <option value=''>Quitar trabajador</option>
-                @foreach ($users as $user)
+                @foreach ($users as $user2)
                     {{-- <option value="{{$user->ci}}" >{{$user}} </option> --}}
-                    <option value="{{ $user->ci }}">{{ $user->nombre }} {{ $user->ap }} </option>
+                    <option value="{{ $user2->ci }}">{{ $user2->nombre }} {{ $user2->ap }} </option>
                 @endforeach
             </select>
 
@@ -51,12 +52,21 @@
         <!--ERROR precio-->
 
         <!--***************************************-->
+
         <div class="mb-3">
             <label class="control-label col-md-2 col-sm-3 col-xs-12">Lista de roles</label>
             @foreach ($roles as $role)
+
+                @php
+                    $rolExis = '';
+                    if ($user->hasAnyRole($role->name)) {
+                        $rolExis = 'checked';
+                    }
+                @endphp
+
                 <div class="form-check">
-                    <input type="radio" class="op" name="rol" id="{{ $role->id }}" value="{{ $role->id }}">
-                    <label for="{{ $role->id }}">{{ $role->name }} </label>
+                    <input type="radio" class="op" name="rol" id="{{ $role->id }}" value="{{ $role->id }}" {{$rolExis}}>
+                    <label for="{{ $role->id }}">{{ $role->name }}</label>
                 </div>
             @endforeach
             @error('rol')
