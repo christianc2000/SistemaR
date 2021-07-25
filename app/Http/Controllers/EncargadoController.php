@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Persona;
 use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
+use App\Http\Requests\EncargadoRequest;
 
 use Illuminate\Support\Facades\DB as FacadesDB;
 
@@ -23,10 +24,7 @@ class EncargadoController extends Controller
      */
     public function index()
     {
-        $encargados=Encargado::join('personas','personas.ci', '=', 'encargados.ci_e')
-        ->join("proveedors","proveedors.codigo","=","encargados.cod_prov")
-        ->select('personas.ci','personas.nombre','personas.apellido','personas.direccion','personas.sexo','proveedors.nombre_negocio')
-        ->get();
+        $encargados=Encargado::all();
   //return $encargados;
          return view('encargado.index',compact('encargados'));
     }
@@ -48,22 +46,18 @@ class EncargadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EncargadoRequest $request)
     {
-        $request->validate([//para validar los inputs, y mostrar mensaje
-            'ci'=>'required',
-            'sexo'=>'required',
-            'nombre_negocio'=>'required'
-        ]);
-        $encargados= new Encargado();
         $personas= new Persona();
         $personas->ci=$request->get('ci');
         $personas->nombre=$request->get('nombre');
         $personas->apellido=$request->get('apellido');
         $personas->direccion=$request->get('direccion');
         $personas->sexo=$request->get('sexo');
-        $personas->tipo_p="t";
+        $personas->tipo_p="E";
         $personas->save();
+
+        $encargados= new Encargado();
         $encargados->cod_prov=$request->get('nombre_negocio');
         $encargados->ci_e=$request->get('ci');
         $encargados->save();

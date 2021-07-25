@@ -13,6 +13,7 @@ use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Nota_de_CompraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,21 +35,21 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
 
     Route::resource('cargos', CargoController::class);
     Route::resource('platos', PlatoController::class);
-    
+
     Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
     Route::resource('productosBebidas', ProductoBebidaController::class);
     Route::resource('productosPlatos', ProductoPlatoController::class);
     Route::resource('productosPresas', ProductoPresaController::class);
-    
+
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);
     Route::resource('unidadMedidas', UnidadMedidaController::class);
-    
+
     Route::resource('users', UserController::class);//usuarios
     Route::resource('roles', RoleController::class);//roles
-    
-    Route::resource('trabajadors', TrabajadorController::class);
 
+    Route::resource('trabajadors', TrabajadorController::class);
+    Route::resource('Nota_de_compras', Nota_de_CompraController::class);
 });
 
 
