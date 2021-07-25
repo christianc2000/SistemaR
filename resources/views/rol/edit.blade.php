@@ -12,16 +12,26 @@
         @method('PUT')
         <div class="mb-3">
             <label for="" class="col-form-labelel">Nombre</label>
-            <input id="id" name="name" type="text" value="{{ $role->name }}" required autofocus autocomplete="id"
-                class="form-control" tabindex="1">
+            <input id="id" name="name" type="text" value="{{ $role->name }}" required autofocus
+                autocomplete="id" class="form-control" tabindex="1">
         </div>
+        {{-- $role->getPermissionNames()  me va a servir para el mostrar todos los permisos --}}
         <!--Nombre de rol-->
         <!--***************************************-->
         <div class="mb-3">
+
+
             <label for="" class="col-form-label">Lista de permisos</label>
             @foreach ($permissions as $permission)
+                @php
+                    $rolExist='';
+                    if ($role->hasAnyPermission($permission->name)){
+                        $rolExist='checked';
+                    }
+                @endphp
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" id="{{ $permission->id }}" name="permissions[]">
+                    <input class="form-check-input" type="checkbox" value="{{ $permission->id }}"
+                        id="{{ $permission->id }}" name="permissions[]" {{$rolExist}}>
                     <label class="form-check-label" for="{{ $permission->id }}">
                         {{ $permission->description }}
                     </label>

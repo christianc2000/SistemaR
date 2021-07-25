@@ -49,7 +49,7 @@
         </div>
         <!--lista de permisos-->
 
-        <a href="{{ route('users.index') }}" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <a href="{{ route('roles.index') }}" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-outline-success" tabindex="4">Guardar</button>
     </form>
 @stop
