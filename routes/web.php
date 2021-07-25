@@ -35,10 +35,7 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('cargos', CargoController::class);
     Route::resource('platos', PlatoController::class);
     
-    Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
-    Route::resource('productosBebidas', ProductoBebidaController::class);
     Route::resource('productosPlatos', ProductoPlatoController::class);
-    Route::resource('productosPresas', ProductoPresaController::class);
     
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);

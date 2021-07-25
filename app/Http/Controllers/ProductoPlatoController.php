@@ -31,22 +31,41 @@ class ProductoPlatoController extends Controller
         return view('productoPlato.create', compact('unidadMedidas'));
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+
         $productosPlatos= new Producto();
-        $productosPlatos->id=$request->get('id');
+
         $productosPlatos->nombre=$request->get('nombre');
-        $productosPlatos->tipo_menu=1;
-        $productosPlatos->tipo_char='P';
+        if ($request->get('usoProducto')== 0){
+            $productosPlatos->tipo_menu=false;
+            $productosPlatos->tipo_compra=true;
+        }
+        if ($request->get('usoProducto')== 1){
+            $productosPlatos->tipo_menu=true;
+            $productosPlatos->tipo_compra=false;
+            $productosPlatos->tipo_char=$request->get('tipoProducto');
+            $productosPlatos->precio=$request->get('precio');
+        }
+        if ($request->get('usoProducto')== 2){
+        $productosPlatos->tipo_menu=true;
+        $productosPlatos->tipo_compra=true;
+        $productosPlatos->tipo_char=$request->get('tipoProducto');
         $productosPlatos->precio=$request->get('precio');
+        }
+
+ 
         $productosPlatos->codigo=$request->get('codigo');
         $productosPlatos->save();
+
+         
         return redirect()->route('productosPlatos.index');
     }
 
@@ -68,8 +87,9 @@ class ProductoPlatoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Producto $productosPlato)
-    {
-        return view('productoPlato.edit',compact('productosPlato'));
+    {  
+        $unidadMedidas= UnidadMedida::all();
+        return view('productoPlato.edit',compact('productosPlato','unidadMedidas'));
     }
 
     /**
@@ -81,14 +101,29 @@ class ProductoPlatoController extends Controller
      */
     public function update(Request $request,Producto $productosPlato)
     {
-        $request->validate([//para validar los inputs, y mostrar mensaje
-            'id'=>'required',
-            'nombre'=>'required',
-            'precio'=>'required',
-            'codigo'=>'required'
-        ]);
 
-       $productosPlato->update($request->all());
+
+        $productosPlato->nombre=$request->get('nombre');
+        if ($request->get('usoProducto')== 0){
+            $productosPlato->tipo_menu=false;
+            $productosPlato->tipo_compra=true;
+        }
+        if ($request->get('usoProducto')== 1){
+            $productosPlato->tipo_menu=true;
+            $productosPlato->tipo_compra=false;
+            $productosPlato->tipo_char=$request->get('tipoProducto');
+            $productosPlato->precio=$request->get('precio');
+        }
+        if ($request->get('usoProducto')== 2){
+        $productosPlato->tipo_menu=true;
+        $productosPlato->tipo_compra=true;
+        $productosPlato->tipo_char=$request->get('tipoProducto');
+        $productosPlato->precio=$request->get('precio');
+        }
+     
+       
+        $productosPlato->codigo=$request->get('codigo');
+        $productosPlato->save();
        return redirect()->route('productosPlatos.index');
     }
 
