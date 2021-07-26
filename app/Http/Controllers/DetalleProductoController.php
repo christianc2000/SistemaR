@@ -34,15 +34,14 @@ class DetalleProductoController extends Controller
         return redirect()->route('detalleProductos.index');
     }
 
-    public function edit(Producto $producto)
+    public function edit(detalle_producto $detalle)
     {  
-        $detalle_p = detalle_producto::all();
         $producto =Producto::all();
-        return view('detalleProducto.edit',compact('detalle_p','producto'));
+        return view('detalleProducto.edit',compact('detalle','producto'));
     }
 
-    public function update(Request $request,Producto $productosPlato)
-    {
+    public function update(Request $request)
+    {   
         try{
         $producto=Producto::find($request->get('productoContenedor'));
         $cantidad=$request->get('cantidad');
@@ -55,9 +54,9 @@ class DetalleProductoController extends Controller
         return redirect()->route('detalleProductos.index');
     }
 
-    public function destroy(Producto $productosPlato)
+    public function destroy(detalle_producto $detalle)
     {
-
+       
         return redirect()->route('detalleProductos.index');
     }
 

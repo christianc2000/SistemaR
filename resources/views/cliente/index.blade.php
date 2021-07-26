@@ -6,20 +6,21 @@
 @stop
 
 @section('content')
-<a href="{{url('/cliente/create')}}">Registrar nuevo cliente</a>
-<table class="table table-light">
-    <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th>CI</th>
-            <th>Nit</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Sexo</th>
-            <th>Celular</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+<a href=" {{route('cliente.create')}} " class="btn btn-primary mb-4" >REGISTRAR UN NUEVO CLIENTE</a>
+
+    <table id="clientes" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
+        <thead class="bg-dark text-white">
+           <tr>
+            <th scope="col">#</th>
+            <th scope="col">CI</th>
+            <th scope="col">Nit</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Acciones</th>
+           </tr>
+        </thead>    
 
     <tbody>
         @foreach($clientes as $cliente )
@@ -32,21 +33,14 @@
             <td>{{$cliente->Sexo}}</td>
             <td>{{$cliente->celular}}</td>
             <td>
-                
-            <a href="{{url('/cliente/'.$cliente->id.'/edit')}}">
-                    Editar
-            </a>
-             | 
-
-            <form action="{{url('/cliente/'.$cliente->id)}}" method="post">
+            <form action="{{url('/cliente/'.$cliente->id)}}" method="post" >
+           
+            @method('delete')
+            <a href="{{url('/cliente/'.$cliente->id.'/edit')}}" class="btn btn-primary mb-4">Editar</a>
             @csrf
-            {{ method_field('DELETE') }}
-            <input type="submit" onclick="return confirm('Confirmas eliminar?')"
-             value="Borrar">
+             <button type="submit" class="btn btn-danger mb-4" onclick="return confirm('Confirmas eliminar?')" value="Borrar">Eliminar</button>
+
             </form>
-
-
-
             </td>
         </tr>
         @endforeach
