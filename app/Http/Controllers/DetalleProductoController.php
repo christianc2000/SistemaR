@@ -22,22 +22,37 @@ class DetalleProductoController extends Controller
     }
 
     public function store(Request $request)
-    {   
-
+    {   try{
+        $producto=Producto::find($request->get('productoContenedor'));
+        $cantidad=$request->get('cantidad');
+        $producto->productos()->attach($request->get('productoContenido'),compact('cantidad'));
+        }catch (\Throwable $th) {
+            
+        $producto =Producto::all();
+        return view('detalleProducto.create', compact('producto'));
+    }
         return redirect()->route('detalleProductos.index');
     }
 
     public function edit(Producto $producto)
     {  
-        $unidadMedidas= UnidadMedida::all();
-        return view('detalleProducto.edit',compact('producto','unidadMedidas'));
+        $detalle_p = detalle_producto::all();
+        $producto =Producto::all();
+        return view('detalleProducto.edit',compact('detalle_p','producto'));
     }
 
     public function update(Request $request,Producto $productosPlato)
     {
-
-
-       return redirect()->route('detalleProductos.index');
+        try{
+        $producto=Producto::find($request->get('productoContenedor'));
+        $cantidad=$request->get('cantidad');
+        $producto->productos()->attach($request->get('productoContenido'),compact('cantidad'));
+        }catch (\Throwable $th) {
+            
+        $producto =Producto::all();
+        return view('detalleProducto.create', compact('producto'));
+    }
+        return redirect()->route('detalleProductos.index');
     }
 
     public function destroy(Producto $productosPlato)
