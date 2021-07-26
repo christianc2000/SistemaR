@@ -304,7 +304,11 @@ return [
                 [
                     'text'=> 'Productos',
                     'url' => 'productosPlatos',
-                ]
+                ],
+                [
+                    'text'=> 'Detalle Productos',
+                    'url' => 'detalleProductos',
+                ],
             ]
         ],
         [

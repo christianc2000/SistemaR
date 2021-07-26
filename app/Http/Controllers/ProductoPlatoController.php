@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Producto;
 use App\Models\UnidadMedida;
-
 use Illuminate\Http\Request;
 
 class ProductoPlatoController extends Controller

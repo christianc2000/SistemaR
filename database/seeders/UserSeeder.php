@@ -18,26 +18,26 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Cargo::create([
-        //     'codigo'=>'1111',
-        //     'descripcion'=>'administrador',
-        //     'sueldo'=>'2500',
-        //     'perfil_usuario'=>'1',
-        // ]);
-        // Persona::create([
-        //     'ci'=>'1234567',
-        //     'nombre'=>'junior',
-        //     'apellido'=>'llanos',
-        //     'direccion'=>'plan 3k',
-        //     'sexo'=>'M',
-        //     'tipo_p'=>'t',
-        // ]);
-        // Trabajador::create([
-        //     'ci_trabajador'=>'1234567',
-        //     'fecha_inico'=>Carbon::now(),
-        //     'estado'=>'1',
-        //     'cod_cargo'=>'1111',
-        // ]);
+         Cargo::create([
+             'codigo'=>'1111',
+             'descripcion'=>'administrador',
+             'sueldo'=>'2500',
+             'perfil_usuario'=>'1',
+         ]);
+         Persona::create([
+             'ci'=>'1234567',
+             'nombre'=>'junior',
+             'apellido'=>'llanos',
+             'direccion'=>'plan 3k',
+             'sexo'=>'M',
+             'tipo_p'=>'t',
+         ]);
+         Trabajador::create([
+             'ci_trabajador'=>'1234567',
+             'fecha_inico'=>Carbon::now(),
+             'estado'=>'1',
+             'cod_cargo'=>'1111',
+         ]);
 
          User::create([
              'name'=>'junior javier llanos',

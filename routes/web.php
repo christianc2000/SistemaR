@@ -13,6 +13,7 @@ use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DetalleProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('platos', PlatoController::class);
     
     Route::resource('productosPlatos', ProductoPlatoController::class);
+    Route::resource('detalleProductos', DetalleProductoController::class);
     
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);

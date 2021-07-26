@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'CREAR PLATO')
+@section('title', 'CREAR PRODUCTO')
 
 @section('content_header')
     <h1>Crear Producto</h1>
@@ -92,7 +92,7 @@
     <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" onload='habilitacion();' onchange='habilitacion();'>
         <option value=0 id=0 >Ingrediente</option>
         <option value=1 id=1 >Menu</option> 
-        <option value=2 id=2 >Ingrediente y Menu</option>
+        <option value=2 id=2 >Compra y Menu</option>
       </select>
 </div>
 <br/>
