@@ -251,7 +251,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',//can verifica si tiene un permiso(rol)
         ],
-        
+
         ['header' => 'Administrador'],
         [
             'text'        => 'Cargos',
@@ -297,10 +297,10 @@ return [
         [
             'text'        => 'Inventarios',
             'icon'        => 'far fa-fw fa-file',
-            
+
             'label'       => 'CRUD',
             'label_color' => 'warning',
-            'submenu'     =>[  
+            'submenu'     =>[
                 [
                     'text'=> 'Productos',
                     'url' => 'productosPlatos',
@@ -312,8 +312,23 @@ return [
             ]
         ],
         [
+            'text'        => 'Cliente',
+            'url' => 'cliente',
+            'icon'        => 'far fa-fw fa-file',
+
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+        [
             'text'        => 'Unidad de Medida',
             'url'         => '/unidadMedidas',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+        [
+            'text'        => 'Compras',
+            'url'         => '/Nota_de_compras',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',

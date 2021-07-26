@@ -14,5 +14,9 @@ class Producto extends Model
 
             return $this->belongsToMany(Producto::class, 'detalle_productos', 'producto_A_id', 'producto_B_id')
             ->as('detalle_producto')->withPivot('cantidad')->withTimesTamps();
+        }
+    
+    function nota_de_compras(){
+        return $this->belongsToMany('App\Models\Nota_de_compra')->withPivot('cantidad','precio_total','precio_unitario','descripcion');
     }
 }

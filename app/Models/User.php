@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return 'user/profile';
     }
+
+    public function nota_de_compras(){
+        return $this->hasMany('App\Models\Nota_de_compra','id_usuario');
+    }
 }
