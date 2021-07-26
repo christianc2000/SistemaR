@@ -9,13 +9,13 @@ use App\Models\detalle_producto;
 class DetalleProductoController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('can:detalleProductos.index')->only('index');
-        $this->middleware('can:detalleProductos.create')->only('create', 'store');
-        $this->middleware('can:detalleProductos.edit')->only('edit', 'update');
-        $this->middleware('can:detalleProductos.destroy')->only('destroy');
-    }
+    // public function __construct(){
+    //     $this->middleware('auth');
+    //     $this->middleware('can:detalleProductos.index')->only('index');
+    //     $this->middleware('can:detalleProductos.create')->only('create', 'store');
+    //     $this->middleware('can:detalleProductos.edit')->only('edit', 'update');
+    //     $this->middleware('can:detalleProductos.destroy')->only('destroy');
+    // }
 
     public function index()
     {

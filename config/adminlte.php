@@ -256,18 +256,24 @@ return [
         [
             'text'        => 'Cargos',
             'url'         => 'cargos',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
             'can'  => 'cargos.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'        => 'Usuarios',
             'url'         => 'users',
             'icon' => 'fas fa-users fa-fw',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
             'can'  => 'users.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'        => 'Roles',
             'url'         => 'roles',
             'icon'        => 'fas fa-users-cog fa-fw',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
            'can'  => 'roles.index',//can verifica si tiene un permiso(rol)
         ],
         ['header' => 'administrador y cajero'],
@@ -282,6 +288,8 @@ return [
         [
             'text'    => 'Persona',
             'icon'    => 'fas fa-fw fa-share',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
             'submenu' => [
                 [
                     'text' => 'Trabajador',
