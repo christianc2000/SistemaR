@@ -97,5 +97,36 @@ class RoleSeeder extends Seeder
                             'description'=>'editar encargado'])->syncRoles([$role1]);
         Permission::create(['name'=>'encargados.destroy',
                             'description'=>'eliminar encargado'])->syncRoles([$role1]); 
+
+                            
+        Permission::create(['name'=>'cliente.index',
+                            'description'=>'ver listado de clientes'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'cliente.create',
+                            'description'=>'crear cliente'])->syncRoles([$role1]);
+        Permission::create(['name'=>'cliente.edit',
+                            'description'=>'editar cliente'])->syncRoles([$role1]);
+        Permission::create(['name'=>'cliente.destroy',
+                            'description'=>'eliminar cliente'])->syncRoles([$role1]); 
+
+
+
+        Permission::create(['name'=>'detalleProductos.index',
+                            'description'=>'ver listado de clientes'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'detalleProductos.create',
+                            'description'=>'crear cliente'])->syncRoles([$role1]);
+        Permission::create(['name'=>'detalleProductos.edit',
+                            'description'=>'editar cliente'])->syncRoles([$role1]);
+        Permission::create(['name'=>'detalleProductos.destroy',
+                            'description'=>'eliminar cliente'])->syncRoles([$role1]); 
+
+
+        Permission::create(['name'=>'Nota_de_compras.index',
+                            'description'=>'ver listado de compras'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'Nota_de_compras.create',
+                            'description'=>'crear nota de compra'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Nota_de_compras.edit',
+                            'description'=>'editar nota de compra'])->syncRoles([$role1]);
+        Permission::create(['name'=>'Nota_de_compras.destroy',
+                            'description'=>'eliminar nota de compra'])->syncRoles([$role1]); 
     }
 }

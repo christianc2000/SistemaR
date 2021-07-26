@@ -7,6 +7,14 @@ use App\Models\Nota_de_compra;
 
 class Nota_de_CompraController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('can:Nota_de_compras.index')->only('index');
+        $this->middleware('can:Nota_de_compras.create')->only('create', 'store');
+        $this->middleware('can:Nota_de_compras.edit')->only('edit', 'update');
+        $this->middleware('can:Nota_de_compras.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

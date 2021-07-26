@@ -306,6 +306,8 @@ return [
                 [
                     'text'=> 'Productos',
                     'url' => 'productosPlatos',
+                    'can'  => 'productosPlatos.index',
+
                 ],
                 [
                     'text'=> 'Detalle Productos',
