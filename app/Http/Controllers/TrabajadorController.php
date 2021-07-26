@@ -13,6 +13,14 @@ use GuzzleHttp\Middleware;
 
 class TrabajadorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:trabajadors.index')->only('index');
+        $this->middleware('can:trabajadors.create')->only('create', 'store');
+        $this->middleware('can:trabajadors.edit')->only('edit', 'update');
+        $this->middleware('can:trabajadors.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

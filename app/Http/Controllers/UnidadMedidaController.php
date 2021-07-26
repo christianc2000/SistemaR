@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class UnidadMedidaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:unidadMedidas.index')->only('index');
+        $this->middleware('can:unidadMedidas.create')->only('create', 'store');
+        $this->middleware('can:unidadMedidas.edit')->only('edit', 'update');
+        $this->middleware('can:unidadMedidas.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

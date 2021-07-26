@@ -268,7 +268,7 @@ return [
             'text'        => 'Roles',
             'url'         => 'roles',
             'icon'        => 'fas fa-users-cog fa-fw',
-        //    'can'  => 'users.index',//can verifica si tiene un permiso(rol)
+           'can'  => 'roles.index',//can verifica si tiene un permiso(rol)
         ],
         ['header' => 'administrador y cajero'],
         [
@@ -286,10 +286,12 @@ return [
                 [
                     'text' => 'Trabajador',
                     'url'  => 'trabajadors',
+                    'can'  => 'trabajadors.index',
                 ],
                 [
                     'text' => 'Encargados',
                     'url'  => 'encargados',
+                    'can'  => 'encargados.index',
                 ],
             ],
         ],
@@ -304,6 +306,7 @@ return [
                 [
                     'text'=> 'Productos',
                     'url' => 'productosPlatos',
+                    'can'  => 'productosPlatos.index',
                 ]
             ]
         ],
@@ -327,6 +330,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',
+            'can'  => 'unidadMedidas.index',
         ],
         ['header' => 'Configuración de la cuenta'],
         [

@@ -34,7 +34,6 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
 
     Route::resource('cargos', CargoController::class);
-    Route::resource('platos', PlatoController::class);
     
     Route::resource('productosPlatos', ProductoPlatoController::class);
     

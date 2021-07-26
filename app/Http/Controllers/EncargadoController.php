@@ -15,6 +15,10 @@ class EncargadoController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('can:encargados.index')->only('index');
+        $this->middleware('can:encargados.create')->only('create', 'store');
+        $this->middleware('can:encargados.edit')->only('edit', 'update');
+        $this->middleware('can:encargados.destroy')->only('destroy');
     }
     /**
      * Display a listing of the resource.

@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class ProductoPlatoController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('can:productosPlatos.index')->only('index');
+        $this->middleware('can:productosPlatos.create')->only('create', 'store');
+        $this->middleware('can:productosPlatos.edit')->only('edit', 'update');
+        $this->middleware('can:productosPlatos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VentaRequest;
+use App\Models\DetalleVenta;
 use App\Models\Producto;
+use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 
@@ -17,7 +20,7 @@ class VentaController extends Controller
     {
         $ventas = Venta::all();
         return view('venta.index', compact('ventas'));
-        
+
     }
 
     /**
@@ -37,9 +40,30 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VentaRequest $request)
     {
-        //
+        // return $request;
+        $ventas = new Venta();
+        // $costos=$request->get('costo');
+        $ventas->costo = $ventas->costo + $request->get('costo');
+        $ventas->llevar = $request->get('llevar');
+        $ventas->user_id = auth()->user()->id;
+        $ventas->save();
+
+        $detalleventas = new DetalleVenta();
+        $detalleventas->cantidad =$request->get('cantidad');
+        $detalleventas->costo_prod =$request->get('costo');
+        $detalleventas->venta_id =$ventas->id;
+        $idProd = explode("_", $request->get('producto'));
+        $detalleventas->producto_id =$idProd[0];
+        $detalleventas->save();
+
+        $detalleventas=$ventas->detalle_ventas;
+        $productos=Producto::all();
+        return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
+        // return redirect()->route('ventas.edit', compact('detalleventas'));
+        // return route('ventas.edit', $detalleventas);
+        // return redirect()->route('ventas.edit', $productos);
     }
 
     /**
@@ -48,9 +72,11 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Venta $venta)
+    { 
+        $productos=Producto::all();
+        $user=User::find($venta->user_id);
+        return view('venta.show', compact('venta', 'user', 'productos'));
     }
 
     /**
@@ -59,9 +85,12 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DetalleVenta $detalleVentas)
     {
-        //
+
+
+        $productos=Producto::all();
+        return view('venta.edit', compact('productos', 'detalleVentas'));
     }
 
     /**
@@ -71,9 +100,24 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VentaRequest $request, $id)
     {
-        //
+
+        $ventas=Venta::find($id);
+        $ventas->llevar = $request->get('llevar');
+        $ventas->costo=$ventas->costo + $request->get('costo');
+        $ventas->save();
+        $detalleventas = new DetalleVenta();
+        $detalleventas->cantidad =$request->get('cantidad');
+        $detalleventas->costo_prod =$request->get('costo');
+        $detalleventas->venta_id =$ventas->id;
+        $idProd = explode("_", $request->get('producto'));
+        $detalleventas->producto_id =$idProd[0];
+        $detalleventas->save();
+
+        $detalleventas=$ventas->detalle_ventas;
+        $productos=Producto::all();
+        return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
     }
 
     /**
@@ -82,8 +126,9 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Venta $venta)
     {
-        //
+        $venta->delete();
+        return redirect()->route('ventas.index');
     }
 }

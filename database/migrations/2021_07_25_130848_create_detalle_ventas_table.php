@@ -17,6 +17,7 @@ class CreateDetalleVentasTable extends Migration
             $table->id();
 
             $table->unsignedInteger('cantidad');
+            $table->decimal('costo_prod',8,2);
             $table->unsignedBigInteger('venta_id')->nullable();
             $table->unsignedBigInteger('producto_id')->nullable();
 

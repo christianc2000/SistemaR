@@ -28,6 +28,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'users.destroy',
                             'description'=>'eliminar usuario'])->syncRoles([$role1]);
 
+
         Permission::create(['name'=>'cargos.index',
                             'description'=>'ver listado de cargos'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'cargos.create',
@@ -37,6 +38,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'cargos.destroy',
                             'description'=>'eliminar cargo'])->syncRoles([$role1]);
 
+
         Permission::create(['name'=>'proveedors.index',
                             'description'=>'ver listado de proveedores'])->syncRoles([$role1, $role2]);
         Permission::create(['name'=>'proveedors.create',
@@ -45,5 +47,55 @@ class RoleSeeder extends Seeder
                             'description'=>'editar proveedor'])->syncRoles([$role1]);
         Permission::create(['name'=>'proveedors.destroy',
                             'description'=>'eliminar proveedor'])->syncRoles([$role1]);
+
+        
+        Permission::create(['name'=>'unidadMedidas.index',
+                            'description'=>'ver listado de unidad de medidas'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'unidadMedidas.create',
+                            'description'=>'crear unidad de medida'])->syncRoles([$role1]);
+        Permission::create(['name'=>'unidadMedidas.edit',
+                            'description'=>'editar unidad de medida'])->syncRoles([$role1]);
+        Permission::create(['name'=>'unidadMedidas.destroy',
+                            'description'=>'eliminar unidad de medida'])->syncRoles([$role1]);
+    
+
+        Permission::create(['name'=>'roles.index',
+                            'description'=>'ver listado de roles'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'roles.create',
+                            'description'=>'crear rol'])->syncRoles([$role1]);
+        Permission::create(['name'=>'roles.edit',
+                            'description'=>'editar rol'])->syncRoles([$role1]);
+        Permission::create(['name'=>'roles.destroy',
+                            'description'=>'eliminar rol'])->syncRoles([$role1]); 
+    
+
+        Permission::create(['name'=>'trabajadors.index',
+                            'description'=>'ver listado de trabajadores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'trabajadors.create',
+                            'description'=>'crear trabajador'])->syncRoles([$role1]);
+        Permission::create(['name'=>'trabajadors.edit',
+                            'description'=>'editar trabajador'])->syncRoles([$role1]);
+        Permission::create(['name'=>'trabajadors.destroy',
+                            'description'=>'eliminar trabajador'])->syncRoles([$role1]); 
+
+
+         Permission::create(['name'=>'productosPlatos.index',
+                            'description'=>'ver listado de trabajadores'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'productosPlatos.create',
+                            'description'=>'crear trabajador'])->syncRoles([$role1]);
+        Permission::create(['name'=>'productosPlatos.edit',
+                            'description'=>'editar trabajador'])->syncRoles([$role1]);
+        Permission::create(['name'=>'productosPlatos.destroy',
+                            'description'=>'eliminar trabajador'])->syncRoles([$role1]); 
+
+
+        Permission::create(['name'=>'encargados.index',
+                            'description'=>'ver listado de encargados'])->syncRoles([$role1, $role2]);
+        Permission::create(['name'=>'encargados.create',
+                            'description'=>'crear encargado'])->syncRoles([$role1]);
+        Permission::create(['name'=>'encargados.edit',
+                            'description'=>'editar encargado'])->syncRoles([$role1]);
+        Permission::create(['name'=>'encargados.destroy',
+                            'description'=>'eliminar encargado'])->syncRoles([$role1]); 
     }
 }
