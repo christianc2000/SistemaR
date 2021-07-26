@@ -308,6 +308,20 @@ return [
             ]
         ],
         [
+            'text'        => 'Ventas',
+            'icon'        => 'far fa-fw fa-file',
+            
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+            'url'  => 'ventas',
+            // 'submenu'     =>[  
+            //     [
+            //         'text'=> 'Productos',
+            //         'url' => 'productosPlatos',
+            //     ]
+            // ]
+        ],
+        [
             'text'        => 'Unidad de Medida',
             'url'         => '/unidadMedidas',
             'icon'        => 'far fa-fw fa-file',

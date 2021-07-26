@@ -17,7 +17,7 @@
 <table id="users" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
-          <th scope="col">NOMBRE</th>
+          <th scope="col">NOMBRE DE USUARIO</th>
           <th scope="col">EMAIL</th>
           <th scope="col">ACCIONES</th>
        </tr>

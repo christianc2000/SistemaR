@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return 'user/profile';
     }
+    // relacion uno a muchos con venta
+    public function ventas(){
+        return $this->hasMany('App\Models\Venta');
+    }
 }
