@@ -74,5 +74,9 @@ class User extends Authenticatable
 
     public function nota_de_compras(){
         return $this->hasMany('App\Models\Nota_de_compra','id_usuario');
+    // relacion uno a muchos con venta
+    }
+    public function ventas(){
+        return $this->hasMany('App\Models\Venta');
     }
 }

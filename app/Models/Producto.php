@@ -19,4 +19,9 @@ class Producto extends Model
     function nota_de_compras(){
         return $this->belongsToMany('App\Models\Nota_de_compra')->withPivot('cantidad','precio_total','precio_unitario','descripcion');
     }
+    //relacion uno a muchos con detalleventa
+    public function detalle_ventas()
+    {
+        return $this->hasMany('App\Models\DetalleVenta');
+    } 
 }

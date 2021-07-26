@@ -16,6 +16,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetalleProductoController;
 use App\Http\Controllers\Nota_de_CompraController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,15 +41,15 @@ return view('auth.login');
 Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
     Route::resource('cliente', ClienteController::class);
     Route::resource('cargos', CargoController::class);
-    Route::resource('platos', PlatoController::class);
- 
+    
     Route::resource('productosPlatos', ProductoPlatoController::class);
     Route::resource('detalleProductos', DetalleProductoController::class);
     
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);
     Route::resource('unidadMedidas', UnidadMedidaController::class);
-
+    Route::resource('ventas', VentaController::class);
+    
     Route::resource('users', UserController::class);//usuarios
     Route::resource('roles', RoleController::class);//roles
 
