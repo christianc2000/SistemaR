@@ -308,6 +308,14 @@ return [
             ]
         ],
         [
+            'text'        => 'Cliente',
+            'url' => 'cliente',
+            'icon'        => 'far fa-fw fa-file',
+
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+        [
             'text'        => 'Unidad de Medida',
             'url'         => '/unidadMedidas',
             'icon'        => 'far fa-fw fa-file',

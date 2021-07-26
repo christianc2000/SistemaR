@@ -14,7 +14,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Nota_de_CompraController;
-
+use App\Http\Controllers\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,27 +26,22 @@ use App\Http\Controllers\Nota_de_CompraController;
 |
 */
 
+
 Route::get('/', function () {
- return view('auth.login');
- //return view('welcome');
+return view('auth.login');
+ ////return view('welcome');
 });
 
-Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
 
+   
+
+Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
+    Route::resource('cliente', ClienteController::class);
     Route::resource('cargos', CargoController::class);
     Route::resource('platos', PlatoController::class);
-<<<<<<< HEAD
-
-    Route::resource('productos', ProductoController::class);//PRODUCTOS COMPRA
-    Route::resource('productosBebidas', ProductoBebidaController::class);
-    Route::resource('productosPlatos', ProductoPlatoController::class);
-    Route::resource('productosPresas', ProductoPresaController::class);
-
-=======
-    
+ 
     Route::resource('productosPlatos', ProductoPlatoController::class);
     
->>>>>>> ecccf0f5c339f78235750908caabd322bab3be53
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);
     Route::resource('unidadMedidas', UnidadMedidaController::class);
@@ -74,3 +69,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
 Route::get('/dash/plato/create', function () {
     return view('plato.create');
 });*/
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
