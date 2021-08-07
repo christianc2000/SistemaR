@@ -59,7 +59,7 @@
         <div class="">
             <label class="control-label col-md-2 col-sm-3 col-xs-12" for="">Trabajador</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ci_trab">
-                <option selected value="">Sin trabajador</option>
+                <option selected value="">Seleccion al personal</option>
                 @foreach ($users as $user)
                     {{-- <option value="{{$user->ci}}" >{{$user}} </option> --}}
                     <option value="{{ $user->ci }}">{{ $user->nombre }} {{ $user->ap }} </option>
