@@ -9,7 +9,7 @@ use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
-
+use PDF;
 class VentaController extends Controller
 {
     /**
@@ -23,7 +23,13 @@ class VentaController extends Controller
         return view('venta.index', compact('ventas'));
 
     }
-
+    public function iprimir(){
+        //dd("hola");
+        $ventas = Venta::all();
+        $pdf=\PDF::loadview('reporte.venta',compact('ventas'));
+    return $pdf ->download('venta.pdf');
+    
+    }
     /**
      * Show the form for creating a new resource.
      *

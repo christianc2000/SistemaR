@@ -20,6 +20,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\VentaController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,10 +38,13 @@ return view('auth.login');
  ////return view('welcome');
 });
 
-
-   
+//Route::get('/reporteventa-pdf'.'App\Http\Controllers\VentaController@imprimir');
+//Route::get('/reporteventa-pdf'.'VentaController@imprimir');
+//Route::get('/reporteventa-pdf',VentaController::class);
+Route::get('/reporteventa-pdf', [VentaController::class, 'iprimir']);
 
 Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
+    
     Route::resource('cliente', ClienteController::class);
     Route::resource('cargos', CargoController::class);
     
