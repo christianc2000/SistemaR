@@ -14,7 +14,7 @@
         <label class="col-form-label" for="">Cliente</label>
         <select  name="cliente" required
             id="cliente">
-            <option selected value="xxxxxxxxxxx">Seleccionar</option>
+            <option selected value="xxxxxxxxxxx">sin cliente</option>
             @foreach ($clientes as $cliente)
                 <option value="{{ $cliente->id }}">{{ $cliente->Nombre}} {{ $cliente->Apellido}}
                 </option>
