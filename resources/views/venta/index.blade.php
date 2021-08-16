@@ -37,7 +37,7 @@
                 <!--platos/{plato}/edit-->
                 <!---->
                 {{-- @can('proveedors.destroy') --}}
-                    <form action="{{route('ventas.destroy',$venta)}}" method="POST">
+                    <form action="{{route('ventas.destroy',$venta->id)}}" method="POST">
                         <a href="{{route('ventas.show', $venta)}}" class="btn btn-primary">Mostrar</a>
                         @csrf  <!--metodo para añadir token a un formulario-->
                         @method('delete')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\carroVentaController;
 use App\Http\Controllers\PlatoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrabajadorController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetalleProductoController;
 use App\Http\Controllers\Nota_de_CompraController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\VentaController;
 
 /*
@@ -48,7 +50,11 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);
     Route::resource('unidadMedidas', UnidadMedidaController::class);
+    Route::resource('detalleVentas', DetalleVentaController::class);
     Route::resource('ventas', VentaController::class);
+    Route::get('ventas/carrito/{id}', [carroVentaController::class, 'eliminar']);
+    Route::get('ventas/eliminaDetalle/{id}', [carroVentaController::class, 'eliminarDetalleVenta']);
+    
     
     Route::resource('users', UserController::class);//usuarios
     Route::resource('roles', RoleController::class);//roles
