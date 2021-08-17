@@ -9,6 +9,7 @@ use App\Models\Persona;
 use App\Models\Proveedor;
 use GuzzleHttp\Middleware;
 use App\Http\Requests\EncargadoRequest;
+use Spatie\Activitylog\Models\Activity;
 
 use Illuminate\Support\Facades\DB as FacadesDB;
 
@@ -65,6 +66,11 @@ class EncargadoController extends Controller
         $encargados->cod_prov=$request->get('nombre_negocio');
         $encargados->ci_e=$request->get('ci');
         $encargados->save();
+
+        activity()->useLog('Encargado')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Encargado::all()->last()->id;
+        $lastActivity->save();
 
         return redirect()->route('encargados.index');//redirige a la vista index de la carpeta cargo
     }
@@ -134,6 +140,11 @@ class EncargadoController extends Controller
    $encargado->ci_e=$request->get('ci');
    $encargado->save();
 
+   activity()->useLog('Encargado')->log('Editado')->subject();
+   $lastActivity = Activity::all()->last();
+   $lastActivity->subject_id = Encargado::all()->last()->id;
+   $lastActivity->save();
+
    return redirect()->route('encargados.index');
 
     }
@@ -148,6 +159,12 @@ class EncargadoController extends Controller
     {
         $encargado=Encargado::find($ci_e);
         $encargado->delete();
+
+        activity()->useLog('Encargado')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Encargado::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('encargados.index');
     }
 }

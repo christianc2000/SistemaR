@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\StoreMenu;
 use App\Http\Requests\TrabajadorRequest;
 use Illuminate\Http\Request;
@@ -72,6 +73,13 @@ class TrabajadorController extends Controller
         $trabajadors->cod_cargo=$request->get('codCargo');
         $trabajadors->save();
 
+
+        activity()->useLog('Trabajador')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Trabajador::all()->last()->id;
+        $lastActivity->save();
+
+
         return redirect()->route('trabajadors.index');//redirige a la vista index de la carpeta cargo
     }
 
@@ -130,6 +138,12 @@ class TrabajadorController extends Controller
        $trabajadors->estado=$request->get('estado');
        $trabajadors->cod_cargo=$request->get('codCargo');
        $trabajadors->save();
+
+       activity()->useLog('Trabajador')->log('Editado')->subject();
+       $lastActivity = Activity::all()->last();
+       $lastActivity->subject_id = Trabajador::all()->last()->id;
+       $lastActivity->save();
+
        return redirect()->route('trabajadors.index');
     }
 
@@ -147,6 +161,13 @@ class TrabajadorController extends Controller
         // $trabajadors=Trabajador::find($ci_trabajador);
         // $trabajadors->delete();
         // $ci=$ci_trabajador;
+
+
+        activity()->useLog('Trabajador')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Trabajador::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('trabajadors.index');
     }
 }
