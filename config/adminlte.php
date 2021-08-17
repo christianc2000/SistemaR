@@ -350,6 +350,19 @@ return [
 
             ],
         ],
+        [
+            'text'    => 'bitacora',
+            'icon'    => 'fas fa-fw fa-cash-register',
+            'submenu' => [
+
+                [
+                    'text' => 'Bitacora',
+                    'icon' => 'far fa-fw fa-user',
+                    'url' => 'bitacora'
+                ],
+
+            ],
+        ],
 
         ['header' => 'Configuración de la cuenta'],
         [
