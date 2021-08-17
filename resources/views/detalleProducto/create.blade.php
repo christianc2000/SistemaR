@@ -25,7 +25,7 @@
 
 
 <div class="mb-3">
-    <label for="" class="col-form-label">Producto contenedor</label>
+    <label for="" class="col-form-label">Producto contenido</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
     <select class="form-select" aria-label="Default select example" id="productoContenido" name="productoContenido" >
         @foreach ($producto as $prod)
@@ -54,5 +54,9 @@
 @stop
 
 @section('js')
+
+@if (!empty($error))
+    <script language="javaScript"> alert('Ya existe esta combinacion') </script>
+@endif
 
 @stop

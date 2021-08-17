@@ -20,13 +20,18 @@
        </tr>
     </thead>
     <TBODY>
-        @foreach ($detalle_p as $detalle)
-                <tr>
-                <td>{{$producto->where('id',$detalle->producto_A_id)->first()->nombre}}</td>
-                <td>{{$producto->where('id',$detalle->producto_B_id)->first()->nombre}}</td>
-                <td>{{$detalle->cantidad}}</td>
-                <td>
-
+        @foreach ($detalle_p as $det)
+            <tr>
+                <td>{{$producto->where('id',$det->producto_A_id)->first()->nombre}}</td>
+                <td>{{$producto->where('id',$det->producto_B_id)->first()->nombre}}</td>
+                <td>{{$det->cantidad}}</td>
+                <td>         
+                    <form action="{{route('detalleProductos.destroy',$det)}}" method="POST">                       
+                         <a href="{{route('detalleProductos.edit',$det)}}" class="btn btn-primary">Editar</a>
+                        @csrf 
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
                 </td>
             </tr>
 

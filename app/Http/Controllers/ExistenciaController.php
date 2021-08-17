@@ -2,26 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\Activitylog\Models\Activity;
-
 use Illuminate\Http\Request;
-use App\Models\Producto;
-use App\Models\detalle_producto;
-use App\Models\DetalleProduct;
-use Illuminate\Support\Facades\Auth;
 
-class DetalleProductoController extends Controller
+class ExistenciaController extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware('auth');
-    //     $this->middleware('can:detalleProductos.index')->only('index');
-    //     $this->middleware('can:detalleProductos.create')->only('create', 'store');
-    //     $this->middleware('can:detalleProductos.edit')->only('edit', 'update');
-    //     $this->middleware('can:detalleProductos.destroy')->only('destroy');
-    // }
-
-    public function index()
+/*    public function index()
     {
         $detalle_p = DetalleProduct::all();
         $producto =Producto::all();
@@ -36,9 +22,7 @@ class DetalleProductoController extends Controller
     }
 
     public function store(Request $request)
-    {   
-        
-        $id_A=$request->get('productoContenedor');
+    {   $id_A=$request->get('productoContenedor');
         $id_B=$request->get('productoContenido');
         if (DetalleProduct::noExiste($id_A,$id_B)){
             $detalle=new DetalleProduct;
@@ -46,18 +30,11 @@ class DetalleProductoController extends Controller
             $detalle->producto_A_id=$id_A;
             $detalle->producto_B_id=$id_B;
             $detalle->save();      
-
-            activity()->useLog('Detalle Producto')->log('Nuevo')->subject();
-            $lastActivity = Activity::all()->last();
-            $lastActivity->subject_id = DetalleProduct::all()->last()->id;
-            $lastActivity->save();
-
             return redirect()->route('detalleProductos.index');
         }else{
         
         $producto= Producto::all();
         $error= true;
-
         return view('detalleProducto.create', compact('producto','error'));
 
         }
@@ -78,26 +55,14 @@ class DetalleProductoController extends Controller
         $detalleProducto->cantidad = $cantidad;
         $detalleProducto->save();
 
-        activity()->useLog('Detalle Producto')->log('Editado')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = DetalleProduct::all()->last()->id;
-        $lastActivity->save();
-
         return redirect()->route('detalleProductos.index');
     }
 
     public function destroy(DetalleProduct $detalleProducto)
     {
-        
-        activity()->useLog('Detalle Producto')->log('Eliminado')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = DetalleProduct::all()->last()->id;
-        $lastActivity->save();
-
        $detalleProducto->delete();
       //  $usuario = Auth::user();
       return redirect()->route('detalleProductos.index');
 
-    }
-
+    }*/
 }

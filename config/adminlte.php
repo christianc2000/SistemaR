@@ -321,6 +321,11 @@ return [
                     'text'=> 'Detalle Productos',
                     'url' => 'detalleProductos',
                 ],
+                [
+                    'text'=> 'Nota de Entrada o Salida ',
+                    'url' => 'notaEntradaSalidas',
+                    
+                ],
             ]
         ],
         [

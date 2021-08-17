@@ -19,6 +19,9 @@ use App\Http\Controllers\Nota_de_CompraController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ExistenciaController;
+use App\Http\Controllers\NotaEntradaSalidaController;
+use App\Http\Controllers\DetalleNotaEntradaSalidaController;
 use App\Http\Controllers\Bitacora;
 
 /*
@@ -51,8 +54,13 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('cargos', CargoController::class);
     Route::resource('bitacora', Bitacora::class);
     Route::resource('productosPlatos', ProductoPlatoController::class);
+
     Route::resource('detalleProductos', DetalleProductoController::class);
-    
+
+    Route::resource('existencias',ExistenciaController::class);
+    Route::resource('notaEntradaSalidas', NotaEntradaSalidaController::class);
+    Route::resource('detalleNotaEntradaSalidas',DetalleNotaEntradaSalidaController::class);
+
     Route::resource('encargados', EncargadoController::class);
     Route::resource('proveedors', ProveedorController::class);
     Route::resource('unidadMedidas', UnidadMedidaController::class);
@@ -68,7 +76,7 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('trabajadors', TrabajadorController::class);
     Route::resource('Nota_de_compras', Nota_de_CompraController::class);
 });
-
+ 
 
 //Route::get('platos', [PlatoController::class,'index']);
 

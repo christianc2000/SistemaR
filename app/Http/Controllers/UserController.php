@@ -40,13 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
-            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
-            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
-            ->where('cargos.perfil_usuario', '=', 1)
-            ->whereNull('users.ci_trab')
-            ->get();
+        $users = User::all();
 
         $roles = Role::all();
 
@@ -104,14 +98,7 @@ class UserController extends Controller
         //*** asignar rol */
         $roles = Role::all();
         // return view('user.editarRol',compact('user', 'roles'));
-        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
-            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
-            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
-            ->where('cargos.perfil_usuario', '=', 1)
-            ->whereNull('users.ci_trab')
-            // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
-            ->get();
+        $users = User::all();
 
         return view('user.edit', compact('user', 'users', 'roles'));
     }

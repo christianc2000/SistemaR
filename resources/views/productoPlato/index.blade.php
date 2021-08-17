@@ -57,7 +57,7 @@
                     <!--platos/{plato}/edit-->
                     <!---->
                     <form action="{{route('productosPlatos.destroy',$productosPlato)}}" method="POST">
-                        <a href="{{route('productosPlatos.edit', $productosPlato)}}" class="btn btn-primary">Editar</a>
+                        <a href="{{route('productosPlatos.edit', $productosPlato)}}" class="btn btn-primary">Editar</a>                        
                         @csrf  <!--metodo para añadir token a un formulario-->
                         @method('delete')
                         <button type="submit" class="btn btn-danger">Eliminar</button>
