@@ -7,12 +7,9 @@ use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\detalle_producto;
-<<<<<<< HEAD
 use PDF;
-=======
 use App\Models\DetalleProduct;
 use Illuminate\Support\Facades\Auth;
->>>>>>> 693ebe84305dd3e751d5d5aa217174339dd11a66
 
 class DetalleProductoController extends Controller
 {
