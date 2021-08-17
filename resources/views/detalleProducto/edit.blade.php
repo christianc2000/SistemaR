@@ -14,7 +14,13 @@
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
     <select class="form-select" aria-label="Default select example" id="productoContenedor" name="productoContenedor" >
         @foreach ($producto as $prod)
+        @if ($detalle->producto_A_id!=$prod->id)
             <option value="{{$prod->id}}">{{$prod->nombre}}</option>
+        @else
+            <option selected=true value="{{$prod->id}}">{{$prod->nombre}}</option>
+        @endif
+           
+            
         @endforeach       
       </select>
 </div>
@@ -23,11 +29,15 @@
 
 
 <div class="mb-3">
-    <label for="" class="col-form-label">Producto contenedor</label>
+    <label for="" class="col-form-label">Producto contenido</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
     <select class="form-select" aria-label="Default select example" id="productoContenido" name="productoContenido" >
         @foreach ($producto as $prod)
+        @if ($detalle->producto_B_id!=$prod->id)
             <option value="{{$prod->id}}">{{$prod->nombre}}</option>
+        @else
+            <option selected=true value="{{$prod->id}}">{{$prod->nombre}}</option>
+        @endif
         @endforeach       
       </select>
 </div>
@@ -36,7 +46,7 @@
 
 <div class="mb-3">
     <label for="" class="col-form-label">Cantidad</label>
-    <input id="cantidad" name="cantidad" type="number" class="form-control" tabindex="2" required autofocus autocomplete="cantidad">
+    <input id="cantidad" name="cantidad" type="number" class="form-control" tabindex="2" required autofocus autocomplete="cantidad" value="{{$detalle->cantidad}}">
 </div>
 
 <br/>

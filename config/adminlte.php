@@ -321,6 +321,11 @@ return [
                     'text'=> 'Detalle Productos',
                     'url' => 'detalleProductos',
                 ],
+                [
+                    'text'=> 'Nota de Entrada o Salida ',
+                    'url' => 'notaEntradaSalidas',
+                    
+                ],
             ]
         ],
         [
@@ -357,6 +362,13 @@ return [
         [
             'text'        => 'Compras',
             'url'         => '/Nota_de_compras',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 'CRUD',
+            'label_color' => 'warning',
+        ],
+        [
+            'text'        => 'Bitacora',
+            'url'         => '/bitacora',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 'CRUD',
             'label_color' => 'warning',

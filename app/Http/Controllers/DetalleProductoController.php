@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\Activitylog\Models\Activity;
+
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\detalle_producto;
+<<<<<<< HEAD
 use PDF;
+=======
+use App\Models\DetalleProduct;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 693ebe84305dd3e751d5d5aa217174339dd11a66
 
 class DetalleProductoController extends Controller
 {
@@ -20,9 +27,10 @@ class DetalleProductoController extends Controller
 
     public function index()
     {
-        $detalle_p = detalle_producto::all();
+        $detalle_p = DetalleProduct::all();
         $producto =Producto::all();
-        return view('detalleProducto.index',compact('detalle_p', 'producto'));
+       
+        return view('detalleProducto.index',compact('detalle_p','producto'));
     }
     public function iprimir(){
         //dd("hola");
@@ -39,42 +47,68 @@ class DetalleProductoController extends Controller
     }
 
     public function store(Request $request)
-    {   try{
-        $producto=Producto::find($request->get('productoContenedor'));
-        $cantidad=$request->get('cantidad');
-        $producto->productos()->attach($request->get('productoContenido'),compact('cantidad'));
-        }catch (\Throwable $th) {
-            
-        $producto =Producto::all();
-        return view('detalleProducto.create', compact('producto'));
-    }
-        return redirect()->route('detalleProductos.index');
+    {   
+        
+        $id_A=$request->get('productoContenedor');
+        $id_B=$request->get('productoContenido');
+        if (DetalleProduct::noExiste($id_A,$id_B)){
+            $detalle=new DetalleProduct;
+            $detalle->cantidad=$request->get('cantidad');
+            $detalle->producto_A_id=$id_A;
+            $detalle->producto_B_id=$id_B;
+            $detalle->save();      
+
+            activity()->useLog('Detalle Producto')->log('Nuevo')->subject();
+            $lastActivity = Activity::all()->last();
+            $lastActivity->subject_id = DetalleProduct::all()->last()->id;
+            $lastActivity->save();
+
+            return redirect()->route('detalleProductos.index');
+        }else{
+        
+        $producto= Producto::all();
+        $error= true;
+
+        return view('detalleProducto.create', compact('producto','error'));
+
+        }
+    
+       
     }
 
-    public function edit(detalle_producto $detalle)
+    public function edit(DetalleProduct $detalleProducto)
     {  
+        $detalle= $detalleProducto;
         $producto =Producto::all();
         return view('detalleProducto.edit',compact('detalle','producto'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,DetalleProduct $detalleProducto)
     {   
-        try{
-        $producto=Producto::find($request->get('productoContenedor'));
         $cantidad=$request->get('cantidad');
-        $producto->productos()->attach($request->get('productoContenido'),compact('cantidad'));
-        }catch (\Throwable $th) {
-            
-        $producto =Producto::all();
-        return view('detalleProducto.create', compact('producto'));
-    }
+        $detalleProducto->cantidad = $cantidad;
+        $detalleProducto->save();
+
+        activity()->useLog('Detalle Producto')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = DetalleProduct::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('detalleProductos.index');
     }
 
-    public function destroy(detalle_producto $detalle)
+    public function destroy(DetalleProduct $detalleProducto)
     {
-       
-        return redirect()->route('detalleProductos.index');
+        
+        activity()->useLog('Detalle Producto')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = DetalleProduct::all()->last()->id;
+        $lastActivity->save();
+
+       $detalleProducto->delete();
+      //  $usuario = Auth::user();
+      return redirect()->route('detalleProductos.index');
+
     }
 
 }

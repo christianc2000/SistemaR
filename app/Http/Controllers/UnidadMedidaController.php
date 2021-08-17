@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UnidadMedida;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class UnidadMedidaController extends Controller
 {
@@ -49,6 +50,12 @@ class UnidadMedidaController extends Controller
         $unidadMedidas->descripcion=$request->get('descripcion');
         $unidadMedidas->abreviatura=$request->get('abreviatura');
         $unidadMedidas->save();
+
+        activity()->useLog('Unidad de Medida')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = UnidadMedida::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('unidadMedidas.index');
     }
 
@@ -90,6 +97,12 @@ class UnidadMedidaController extends Controller
         ]);
 
        $unidadMedida->update($request->all());
+
+       activity()->useLog('Unidad de Medida')->log('Editado')->subject();
+       $lastActivity = Activity::all()->last();
+       $lastActivity->subject_id = UnidadMedida::all()->last()->id;
+       $lastActivity->save();
+
        return redirect()->route('unidadMedidas.index');
     }
 
@@ -101,7 +114,14 @@ class UnidadMedidaController extends Controller
      */
     public function destroy(UnidadMedida $unidadMedida)
     {
+        
+        activity()->useLog('Unidad de Medida')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = UnidadMedida::all()->last()->id;
+        $lastActivity->save();
+        
         $unidadMedida->delete();
+
         return redirect()->route('unidadMedidas.index');
     }
 }

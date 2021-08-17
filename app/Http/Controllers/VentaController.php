@@ -9,7 +9,9 @@ use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use Spatie\Activitylog\Models\Activity;
+
+use PDF;
 class VentaController extends Controller
 {
     /**
@@ -71,6 +73,12 @@ class VentaController extends Controller
         $detalleventas->save();
 
         $id = $ventas->id;
+
+        activity()->useLog('Venta')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Venta::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('ventas.edit', $id);
     }
 
@@ -127,6 +135,12 @@ class VentaController extends Controller
 
         $detalleventas=$ventas->detalle_ventas;
         $id = $ventas->id;
+
+        activity()->useLog('Venta')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id =Venta::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('ventas.edit', $id);
         // return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
     }
@@ -139,12 +153,20 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
+        
+        
+        activity()->useLog('Venta')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Venta::all()->last()->id;
+        $lastActivity->save();
+        
         $venta=Venta::find($id);
         $detalleventas=$venta->detalle_ventas;
         foreach ($detalleventas as $detalleventa) {
             $detalleventa->delete();
         }
         $venta->delete();
+
         return redirect()->route('ventas.index');
     }
 }

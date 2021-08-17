@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'CREAR CARGO')
+@section('title', 'CREAR USUARIO')
 
 @section('content_header')
     <h1>Crear Usuario</h1>
@@ -25,7 +25,7 @@
                 autofocus autocomplete="codigo">
             @error('name')
                 <br>
-                <small>*{{ $message }} </small>
+                <small>{{ $message }} </small>
             @enderror
         </div>
         <!--ERROR NOmbre-->

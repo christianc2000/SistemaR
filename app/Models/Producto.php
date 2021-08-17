@@ -24,4 +24,9 @@ class Producto extends Model
     {
         return $this->hasMany('App\Models\DetalleVenta');
     } 
+
+    public static function detalles($productoAId){
+        return DetalleProduct::where('producto_A_id',$productoAId)->get();
+       
+    }
 }

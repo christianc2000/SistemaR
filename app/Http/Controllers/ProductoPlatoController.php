@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\UnidadMedida;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class ProductoPlatoController extends Controller
 {
@@ -72,7 +73,10 @@ class ProductoPlatoController extends Controller
         $productosPlatos->codigo=$request->get('codigo');
         $productosPlatos->save();
 
-         
+        activity()->useLog('Producto')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Producto::all()->last()->id;
+        $lastActivity->save(); 
         return redirect()->route('productosPlatos.index');
     }
 
@@ -131,6 +135,12 @@ class ProductoPlatoController extends Controller
        
         $productosPlato->codigo=$request->get('codigo');
         $productosPlato->save();
+
+        activity()->useLog('Producto')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Producto::all()->last()->id;
+        $lastActivity->save(); 
+
        return redirect()->route('productosPlatos.index');
     }
 
@@ -142,7 +152,16 @@ class ProductoPlatoController extends Controller
      */
     public function destroy(Producto $productosPlato)
     {
+        
+        activity()->useLog('Producto')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Producto::all()->last()->id;
+        $lastActivity->save();
+        
         $productosPlato->delete();
+
+         
+
         return redirect()->route('productosPlatos.index');
     }
 }

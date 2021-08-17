@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Trabajador;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Spatie\Activitylog\Models\Activity;
 
 
 use Illuminate\Http\Request;
@@ -39,13 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
-            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
-            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
-            ->where('cargos.perfil_usuario', '=', 1)
-            ->whereNull('users.ci_trab')
-            ->get();
+        $users = User::all();
 
         $roles = Role::all();
 
@@ -71,6 +66,12 @@ class UserController extends Controller
         // $users->syncRoles($request->rol);//sincronizar rol
         //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
         // User::create($request->all());
+
+        activity()->useLog('Usuario')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('users.index')->with('info', 'Se creó un nuevo usuario'); //redirige a la vista index de la carpeta cargo
     }
 
@@ -97,14 +98,7 @@ class UserController extends Controller
         //*** asignar rol */
         $roles = Role::all();
         // return view('user.editarRol',compact('user', 'roles'));
-        $users = Trabajador::join('personas', 'personas.ci', '=', 'trabajadors.ci_trabajador')
-            ->join("Cargos", "Cargos.codigo", "=", "trabajadors.cod_cargo")
-            ->leftJoin('users', 'users.ci_trab', '=', 'trabajadors.ci_trabajador')
-            ->select('personas.ci', 'personas.nombre', 'personas.apellido as ap')
-            ->where('cargos.perfil_usuario', '=', 1)
-            ->whereNull('users.ci_trab')
-            // ->where('users.ci_trab','=', 'trabajadors.ci_trabajador')
-            ->get();
+        $users = User::all();
 
         return view('user.edit', compact('user', 'users', 'roles'));
     }
@@ -133,6 +127,12 @@ class UserController extends Controller
         $user->ci_trab = $request->get('ci_trab');
         $user->save();
         $user->syncRoles($request->rol); //sincronizar rol
+
+        activity()->useLog('Usuario')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('users.index');
     }
 
@@ -144,7 +144,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        
+        activity()->useLog('Usuario')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+        
         $user->delete();
+
+
         return redirect()->route('users.index');
     }
 }
