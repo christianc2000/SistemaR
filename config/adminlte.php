@@ -256,123 +256,101 @@ return [
         [
             'text'        => 'Cargos',
             'url'         => 'cargos',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'icon'        => 'fas fa-clipboard-list',
             'can'  => 'cargos.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'        => 'Usuarios',
             'url'         => 'users',
             'icon' => 'fas fa-users fa-fw',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
             'can'  => 'users.index',//can verifica si tiene un permiso(rol)
         ],
         [
             'text'        => 'Roles',
             'url'         => 'roles',
             'icon'        => 'fas fa-users-cog fa-fw',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
-           'can'  => 'roles.index',//can verifica si tiene un permiso(rol)
+        //    'can'  => 'users.index',//can verifica si tiene un permiso(rol)
         ],
         ['header' => 'administrador y cajero'],
+
         [
-            'text'        => 'Proveedores',
-            'url'         => 'proveedors',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
-            'can'  => 'proveedors.index',//can verifica si tiene un permiso(rol)
-        ],
-        [
-            'text'    => 'Persona',
-            'icon'    => 'fas fa-fw fa-share',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'text'    => 'PERSONAL',
+            'icon'    => 'fas fa-fw fa-address-book',
             'submenu' => [
                 [
                     'text' => 'Trabajador',
                     'url'  => 'trabajadors',
-                    'can'  => 'trabajadors.index',
+                    'icon' => 'fas fa-fw fa-user-tie'
                 ],
-                [
-                    'text' => 'Encargados',
-                    'url'  => 'encargados',
-                    'can'  => 'encargados.index',
-                ],
+
             ],
         ],
 
         [
-            'text'        => 'Inventarios',
-            'icon'        => 'far fa-fw fa-file',
-
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'text'        => 'INVENTARIO',
+            'icon'        => 'fas fa-fw fa-warehouse',
             'submenu'     =>[
                 [
                     'text'=> 'Productos',
                     'url' => 'productosPlatos',
-                    'can'  => 'productosPlatos.index',
-
+                    'icon' => 'fas fa-fw fa-list-alt'
                 ],
                 [
-                    'text'=> 'Detalle Productos',
-                    'url' => 'detalleProductos',
-                ],
-                [
-                    'text'=> 'Nota de Entrada o Salida ',
-                    'url' => 'notaEntradaSalidas',
-                    
+                    'text'        => 'Unidad de Medida',
+                    'url'         => '/unidadMedidas',
+                    'icon'        => 'fas fa-fw fa-weight'
                 ],
             ]
         ],
-        [
-            'text'        => 'Cliente',
-            'url' => 'cliente',
-            'icon'        => 'far fa-fw fa-file',
 
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
-        ],
-                  
+
         [
-            'text'        => 'Ventas',
-            'icon'        => 'far fa-fw fa-file',
-            
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
-            'url'  => 'ventas',
-            // 'submenu'     =>[  
-            //     [
-            //         'text'=> 'Productos',
-            //         'url' => 'productosPlatos',
-            //     ]
-            // ]
-        ],
-        [
-            'text'        => 'Unidad de Medida',
-            'url'         => '/unidadMedidas',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
-            'can'  => 'unidadMedidas.index',
-        ],
-        [
-            'text'        => 'Compras',
-            'url'         => '/Nota_de_compras',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'text'    => 'COMPRAS',
+            'icon'    => 'fas fa-fw fa-shopping-cart',
+            'submenu' => [
+
+                [
+                    'text'        => 'Compra',
+                    'icon'        => 'fas fa-fw fa-cart-plus',
+                    'url'         => 'nota_de_compras'
+                ],
+                [
+                    'text' => 'Encargados',
+                    'url'  => 'encargados',
+                    'icon' => 'fas fa-fw fa-id-card-alt'
+                ],
+                [
+                    'text'        => 'Proveedores',
+                    'url'         => 'proveedors',
+                    'icon'        => 'fas fa-fw fa-building',
+                    'can'  => 'proveedors.index',//can verifica si tiene un permiso(rol)
+                ],
+                [
+                    'text' => 'Lotes',
+
+                ],
+            ],
         ],
         [
-            'text'        => 'Bitacora',
-            'url'         => '/bitacora',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 'CRUD',
-            'label_color' => 'warning',
+            'text'    => 'VENTAS',
+            'icon'    => 'fas fa-fw fa-cash-register',
+            'submenu' => [
+
+                [
+                    'text' => 'Venta',
+                    'icon' => 'fas fa-fw fa-cash-register',
+                    'url'  => 'ventas'
+
+                ],
+                [
+                    'text' => 'Cliente',
+                    'icon' => 'far fa-fw fa-user',
+                    'url' => 'cliente'
+                ],
+
+            ],
         ],
+
         ['header' => 'Configuración de la cuenta'],
         [
             'text' => 'Perfil de Usuario',

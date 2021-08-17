@@ -1,23 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'INVENTARIO')
+@section('title', 'Existencia')
 
 @section('content_header')
-    <h1>Nota de Entrada y Salida</h1>
+    <h1>Lista de existencias</h1>
 @stop
 
 @section('content')
 {{-- @can('proveedors.create') --}}
-    <a href="{{route('ventas.create')}}" class="btn btn-primary mb-4" >CREAR</a> 
+    <a href="{{route('existencias.create')}}" class="btn btn-primary mb-4" >CREAR</a> 
+    {{-- <a href='/reporteventa-pdf' class="btn btn-primary mb-4" target="_blank">REPORTE</a>  --}}
 {{-- @endcan --}}
 
 <table id="proveedors" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>
           <th scope="col">ID</th>
-          <th scope="col">PRODUCTO</th>
-          <th scope="col">CANTIDAD</th>
-          <th scope="col">TIPO</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">COSTO</th>
           <th scope="col">ACCIONES</th>
        </tr>
        <!--'codigo','nombre_negocio','direccion'-->
@@ -34,12 +34,11 @@
               @endphp
               <td>{{$nombre}}</td>
               <td>{{$venta->costo}}</td>
-              <td> TIPO</td>
               <td>
                 <!--platos/{plato}/edit-->
                 <!---->
                 {{-- @can('proveedors.destroy') --}}
-                    <form action="{{route('ventas.destroy',$venta)}}" method="POST">
+                    <form action="{{route('ventas.destroy',$venta->id)}}" method="POST">
                         <a href="{{route('ventas.show', $venta)}}" class="btn btn-primary">Mostrar</a>
                         @csrf  <!--metodo para añadir token a un formulario-->
                         @method('delete')

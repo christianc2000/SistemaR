@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ExistenciaController extends Controller
 {
 
-/*    public function index()
+   public function index()
     {
         $detalle_p = DetalleProduct::all();
         $producto =Producto::all();
@@ -64,5 +64,5 @@ class ExistenciaController extends Controller
       //  $usuario = Auth::user();
       return redirect()->route('detalleProductos.index');
 
-    }*/
+    }
 }

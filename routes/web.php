@@ -68,6 +68,7 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     Route::resource('unidadMedidas', UnidadMedidaController::class);
     Route::resource('detalleVentas', DetalleVentaController::class);
     Route::resource('ventas', VentaController::class);
+    Route::resource('existencias', ExistenciaController::class);
     Route::get('ventas/carrito/{id}', [carroVentaController::class, 'eliminar']);
     Route::get('ventas/eliminaDetalle/{id}', [carroVentaController::class, 'eliminarDetalleVenta']);
     

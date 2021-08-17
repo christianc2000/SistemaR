@@ -15,11 +15,12 @@ class CreateDetalleExistenciasTable extends Migration
     {
         Schema::create('detalle_existencias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('producto_id');
-            $table->foreignId('existencia_id');
-            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('existencia_id')->references('id')->on('existencias')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedInteger('cantidad');
+            
+            $table->unsignedInteger('cant');
+            $table->foreignId('producto_id')->nullable();
+            $table->foreignId('existencia_id')->nullable();
+            $table->foreign('producto_id')->references('id')->on('productos')->onDelete('set null');
+            $table->foreign('existencia_id')->references('id')->on('existencias')->onDelete('set null');
             $table->timestamps();
         });
     }
