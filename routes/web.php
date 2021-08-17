@@ -42,8 +42,10 @@ return view('auth.login');
 //Route::get('/reporteventa-pdf'.'VentaController@imprimir');
 //Route::get('/reporteventa-pdf',VentaController::class);
 Route::get('/reporteventa-pdf', [VentaController::class, 'iprimir']);
-
 Route::get('/reportecompra-pdf', [Nota_de_CompraController::class, 'iprimir']);
+Route::get('/reportedetalle_producto-pdf', [DetalleProductoController::class, 'iprimir']);
+Route::get('/reportecliente-pdf', [ClienteController::class, 'iprimir']);
+
 
 Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a loguearme
     

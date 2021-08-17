@@ -7,6 +7,7 @@
 
 @section('content')
 <a href=" {{route('cliente.create')}} " class="btn btn-primary mb-4" >REGISTRAR UN NUEVO CLIENTE</a>
+<a href='/reportecliente-pdf' class="btn btn-primary mb-4" target="_blank">REPORTE</a> 
 
     <table id="clientes" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
         <thead class="bg-dark text-white">

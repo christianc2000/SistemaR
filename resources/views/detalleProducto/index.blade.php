@@ -8,6 +8,7 @@
 
 @section('content')
 <a href=" {{route('detalleProductos.create')}} " class="btn btn-primary mb-4" >CREAR</a>
+<a href='/reportedetalle_producto-pdf' class="btn btn-primary mb-4" target="_blank">REPORTE</a> 
 
 <table id="detalleP" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\detalle_producto;
+use PDF;
 
 class DetalleProductoController extends Controller
 {
@@ -23,7 +24,14 @@ class DetalleProductoController extends Controller
         $producto =Producto::all();
         return view('detalleProducto.index',compact('detalle_p', 'producto'));
     }
-
+    public function iprimir(){
+        //dd("hola");
+        $detalle_p= detalle_producto::all();
+        $producto =Producto::all();
+        $pdf=\PDF::loadview('reporte.detalle_producto',compact('detalle_p','producto'));
+    return $pdf ->download('detalle_producto.pdf');
+    
+    }
     public function create()
     {
         $producto= Producto::all();

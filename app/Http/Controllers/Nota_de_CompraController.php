@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Nota_de_compra;
 use App\Models\Proveedor;
+use PDF;
 
 class Nota_de_CompraController extends Controller
 {

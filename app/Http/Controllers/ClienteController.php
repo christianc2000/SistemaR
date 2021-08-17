@@ -23,8 +23,17 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        $datos['clientes'] =cliente::paginate(10);
-        return view('cliente.index', $datos);
+        $clientes = Cliente::all();
+        return view('cliente.index', compact('clientes'));
+       // $datos['clientes'] =cliente::paginate(10);
+        //return view('cliente.index', $datos);
+    }
+    public function iprimir(){
+        //dd("hola");
+        $clientes = Cliente::all();
+        $pdf=\PDF::loadview('reporte.cliente',compact('clientes'));
+    return $pdf ->download('cliente.pdf');
+    
     }
 
     /**
