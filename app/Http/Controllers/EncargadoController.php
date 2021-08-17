@@ -156,15 +156,16 @@ class EncargadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($ci_e)
-    {
-        $encargado=Encargado::find($ci_e);
-        $encargado->delete();
-
+    {   
         activity()->useLog('Encargado')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = Encargado::all()->last()->id;
         $lastActivity->save();
+        
+        $encargado=Encargado::find($ci_e);
+        $encargado->delete();
 
+    
         return redirect()->route('encargados.index');
     }
 }

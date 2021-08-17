@@ -25,7 +25,10 @@ class ClienteController extends Controller
     {
         //
         $datos['clientes'] =cliente::paginate(10);
+        //$datos=cliente::all();
         return view('cliente.index', $datos);
+        //$clientes = Cliente::all();
+        //return view('cliente.index', compact('clientes'));
     }
 
     /**
@@ -118,12 +121,12 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
-        Cliente::destroy($id);
-
+        
         activity()->useLog('Cliente')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = Cliente::all()->last()->id;
         $lastActivity->save();
+        Cliente::destroy($id);
 
         return redirect('cliente')->with('mensaje','Empleado borrado');
     }

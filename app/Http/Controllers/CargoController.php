@@ -118,13 +118,14 @@ class CargoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cargo $cargo)
-    {
-        $cargo->delete();
-
+    {   
+        
         activity()->useLog('Cargo')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = Cargo::all()->last()->id;
         $lastActivity->save();
+        
+        $cargo->delete();
 
         return redirect()->route('cargos.index');
     }

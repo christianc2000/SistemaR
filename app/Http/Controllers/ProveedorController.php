@@ -117,12 +117,14 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor)
     {
 
-        $proveedor->delete();
-
         activity()->useLog('Proveedor')->log('Eliminado')->subject();
        $lastActivity = Activity::all()->last();
        $lastActivity->subject_id = Proveedor::all()->last()->id;
        $lastActivity->save();
+       
+        $proveedor->delete();
+
+        
 
         return redirect()->route('proveedors.index');
     }

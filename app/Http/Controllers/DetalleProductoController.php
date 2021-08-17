@@ -67,19 +67,21 @@ class DetalleProductoController extends Controller
         return view('detalleProducto.create', compact('producto'));
     }
 
-    activity()->useLog('Detalle Producto')->log('Editado')->subject();
-    $lastActivity = Activity::all()->last();
-    $lastActivity->subject_id = detalle_producto::all()->last()->id;
-    $lastActivity->save();
+        activity()->useLog('Detalle Producto')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = detalle_producto::all()->last()->id;
+        $lastActivity->save();
         return redirect()->route('detalleProductos.index');
     }
 
     public function destroy(detalle_producto $detalle)
     {
+        
         activity()->useLog('Detalle Producto')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = detalle_producto::all()->last()->id;
         $lastActivity->save();
+        
         return redirect()->route('detalleProductos.index');
     }
 

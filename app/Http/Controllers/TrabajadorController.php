@@ -156,6 +156,11 @@ class TrabajadorController extends Controller
     public function destroy($ci_trabajador)
     {
         
+        activity()->useLog('Trabajador')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Trabajador::all()->last()->id;
+        $lastActivity->save();
+        
         $personas=Persona::find($ci_trabajador);
         $personas->delete();//como es en cascade basta con eliminar persona
         // $trabajadors=Trabajador::find($ci_trabajador);
@@ -163,10 +168,7 @@ class TrabajadorController extends Controller
         // $ci=$ci_trabajador;
 
 
-        activity()->useLog('Trabajador')->log('Eliminado')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = Trabajador::all()->last()->id;
-        $lastActivity->save();
+
 
         return redirect()->route('trabajadors.index');
     }

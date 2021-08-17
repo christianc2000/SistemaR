@@ -153,17 +153,19 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
+        
+        
+        activity()->useLog('Venta')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Venta::all()->last()->id;
+        $lastActivity->save();
+        
         $venta=Venta::find($id);
         $detalleventas=$venta->detalle_ventas;
         foreach ($detalleventas as $detalleventa) {
             $detalleventa->delete();
         }
         $venta->delete();
-
-        activity()->useLog('Venta')->log('Eliminado')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = Venta::all()->last()->id;
-        $lastActivity->save();
 
         return redirect()->route('ventas.index');
     }

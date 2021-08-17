@@ -152,12 +152,15 @@ class ProductoPlatoController extends Controller
      */
     public function destroy(Producto $productosPlato)
     {
-        $productosPlato->delete();
-
+        
         activity()->useLog('Producto')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = Producto::all()->last()->id;
-        $lastActivity->save(); 
+        $lastActivity->save();
+        
+        $productosPlato->delete();
+
+         
 
         return redirect()->route('productosPlatos.index');
     }

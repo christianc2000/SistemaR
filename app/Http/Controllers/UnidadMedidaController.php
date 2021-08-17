@@ -114,12 +114,13 @@ class UnidadMedidaController extends Controller
      */
     public function destroy(UnidadMedida $unidadMedida)
     {
-        $unidadMedida->delete();
-
+        
         activity()->useLog('Unidad de Medida')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = UnidadMedida::all()->last()->id;
         $lastActivity->save();
+        
+        $unidadMedida->delete();
 
         return redirect()->route('unidadMedidas.index');
     }

@@ -157,12 +157,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-
+        
         activity()->useLog('Usuario')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = User::all()->last()->id;
         $lastActivity->save();
+        
+        $user->delete();
 
 
         return redirect()->route('users.index');
