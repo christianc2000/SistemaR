@@ -11,7 +11,9 @@
         var opcion1 =document.getElementById(0);
         var opcion2 =document.getElementById(1);
         var opcion3 =document.getElementById(2);
+  
         if (opcion1.selected) {
+ 
             var precio=document.getElementById('precio');
              precio.disabled=true;
              document.getElementById("tipoProducto").disabled=true;
@@ -28,6 +30,7 @@
           document.getElementById("tipoProducto").disabled=false;
         
         }
+
     
     }
 
@@ -49,7 +52,7 @@
 <!--***************************************-->
 <div class="mb-3">
     <label for="" class="col-form-label">Precio</label>
-    <input id="precio" name="precio" type="number" value="{{$productosPlato->precio}}" required autofocus autocomplete="precio" class="form-control" tabindex="2"  onclick="habilitacion();">
+    <input id="precio" name="precio" type="number" value="{{$productosPlato->precio}}" required autofocus autocomplete="precio" class="form-control" tabindex="2"  onclick='habilitacion();'>
 </div>
 <!--ERROR precio-->
 
@@ -59,9 +62,12 @@
     <label for="" class="col-form-label">unidad de medida</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
     <select class="form-select" aria-label="Default select example" id="codigo" name="codigo" >
-        @foreach ($unidadMedidas as $unidadMedida)
+        @foreach ($unidadMedidas as $unidadMedida)    
+            @if ($productosPlato->codigo == $unidadMedida->codigo) 
+            <option selected=true value="{{$unidadMedida->codigo}}">{{$unidadMedida->descripcion}}</option>
+                @else
             <option value="{{$unidadMedida->codigo}}">{{$unidadMedida->descripcion}}</option>
-
+            @endif
         @endforeach       
       </select>
 </div>
@@ -71,20 +77,40 @@
 <div class="mb-3">
     <label for="" class="col-form-label">tipo de producto</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
-    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto" >
-        <option value='B' >Bebida</option>
-        <option value='P' >Plato</option>
-        <option value='L' >Presa</option>
+    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto">
+
+        @foreach (collect(['Bebida'=>'B','Plato'=>'P','Presa'=>'L']) as $clave => $item)
+            @if ($productosPlato->tipo_char == $item) 
+            <option selected=true value={{$item}} >{{$clave}}</option> 
+                @else
+            <option value={{$item}}>{{$clave}}</option>         
+            @endif
+        @endforeach
       </select>
 </div>
 <br/>
 <div class="mb-3">
     <label for="" class="col-form-label">Uso de producto</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
-    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" onload='habilitacion();' onchange='habilitacion();'>
-        <option value=0 id=0 >Ingrediente</option>
-        <option value=1 id=1 >Menu</option> 
-        <option value=2 id=2 >Compra y Menu</option>
+    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" onchange='habilitacion();'>
+
+        @foreach (collect(['Compra'=>0,'Menu'=>1,'Compra y Menu'=>2]) as $clave => $item)
+        
+        @if ($productosPlato->tipo_menu && $productosPlato->tipo_compra && $item==2) 
+        <option selected=true value={{$item}} id={{$item}}>{{$clave}}</option> 
+            @else
+        @if ($productosPlato->tipo_menu && !$productosPlato->tipo_compra && $item==1) 
+        <option selected=true value={{$item}} id={{$item}}>{{$clave}}</option> 
+            @else    
+        @if (!$productosPlato->tipo_menu && $productosPlato->tipo_compra && $item==0) 
+        <option selected=true value={{$item}} id={{$item}}>{{$clave}}</option> 
+            @else    
+        <option value={{$item}} id={{$item}}>{{$clave}}</option>     
+        @endif
+        @endif
+        @endif   
+        @endforeach
+
       </select>
 </div>
 <br/>

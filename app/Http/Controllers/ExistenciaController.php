@@ -3,23 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Producto;
-use App\Models\detalle_producto;
-use App\Models\DetalleProduct;
-use Illuminate\Support\Facades\Auth;
 
-class DetalleProductoController extends Controller
+class ExistenciaController extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware('auth');
-    //     $this->middleware('can:detalleProductos.index')->only('index');
-    //     $this->middleware('can:detalleProductos.create')->only('create', 'store');
-    //     $this->middleware('can:detalleProductos.edit')->only('edit', 'update');
-    //     $this->middleware('can:detalleProductos.destroy')->only('destroy');
-    // }
-
-    public function index()
+/*    public function index()
     {
         $detalle_p = DetalleProduct::all();
         $producto =Producto::all();
@@ -76,6 +64,5 @@ class DetalleProductoController extends Controller
       //  $usuario = Auth::user();
       return redirect()->route('detalleProductos.index');
 
-    }
-
+    }*/
 }

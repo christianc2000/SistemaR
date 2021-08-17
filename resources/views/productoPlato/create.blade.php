@@ -58,7 +58,7 @@
 <!--***************************************-->
 <div class="mb-3">
     <label for="" class="col-form-label">Precio</label>
-    <input id="precio" name="precio" type="number" class="form-control" tabindex="2" required autofocus autocomplete="precio" onclick="habilitacion();">
+    <input id="precio" name="precio" type="number" class="form-control" tabindex="2" required autofocus autocomplete="precio" onclick="habilitacion();" disabled=true>
 </div>
 <!--ERROR precio-->
 
@@ -79,7 +79,7 @@
 <div class="mb-3">
     <label for="" class="col-form-label">tipo de producto</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
-    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto" >
+    <select class="form-select" aria-label="Default select example" id="tipoProducto" name="tipoProducto" disabled=true >
         <option value='B' >Bebida</option>
         <option value='P' >Plato</option>
         <option value='L' >Presa</option>
@@ -89,10 +89,10 @@
 <div class="mb-3">
     <label for="" class="col-form-label">Uso de producto</label>
     {{-- <input id="codigo" name="codigo" type="number" class="form-control" tabindex="2" required autofocus autocomplete="codigo"> --}}
-    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" onload='habilitacion();' onchange='habilitacion();'>
-        <option value=0 id=0 >Ingrediente</option>
+    <select class="form-select" aria-label="Default select example" id="usoProducto" name="usoProducto" onchange='habilitacion();'>
+        <option value=0 id=0 >Compra</option>
         <option value=1 id=1 >Menu</option> 
-        <option value=2 id=2 >Ingrediente y Menu</option>
+        <option value=2 id=2 >Compra y Menu</option>
       </select>
 </div>
 <br/>
