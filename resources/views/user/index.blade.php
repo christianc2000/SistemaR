@@ -38,6 +38,7 @@
                     @csrf  <!--metodo para añadir token a un formulario-->
                     @method('delete')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a href="{{route('users.show', $user)}}" class="btn btn-primary">Mostrar</a>
                 </form>
               </td>
           </tr>

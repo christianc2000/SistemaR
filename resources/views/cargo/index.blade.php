@@ -9,6 +9,7 @@
 @section('content')
 <a href="{{route('cargos.create')}}" class="btn btn-primary mb-4" >CREAR</a>
 
+
 <table id="cargos" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
     <thead class="bg-dark text-white">
        <tr>

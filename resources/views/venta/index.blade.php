@@ -9,6 +9,7 @@
 @section('content')
 {{-- @can('proveedors.create') --}}
     <a href="{{route('ventas.create')}}" class="btn btn-primary mb-4" >CREAR</a> 
+    <a href='/reporteventa-pdf' class="btn btn-primary mb-4" target="_blank">REPORTE</a> 
 {{-- @endcan --}}
 
 <table id="proveedors" class="table table-striped table-bordered shadow-lg mt-3" style="width:100%">
@@ -37,7 +38,7 @@
                 <!--platos/{plato}/edit-->
                 <!---->
                 {{-- @can('proveedors.destroy') --}}
-                    <form action="{{route('ventas.destroy',$venta)}}" method="POST">
+                    <form action="{{route('ventas.destroy',$venta->id)}}" method="POST">
                         <a href="{{route('ventas.show', $venta)}}" class="btn btn-primary">Mostrar</a>
                         @csrf  <!--metodo para añadir token a un formulario-->
                         @method('delete')

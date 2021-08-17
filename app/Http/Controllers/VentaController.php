@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VentaRequest;
+use App\Models\cliente;
 use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
-
+use PDF;
 class VentaController extends Controller
 {
     /**
@@ -22,7 +23,13 @@ class VentaController extends Controller
         return view('venta.index', compact('ventas'));
 
     }
-
+    public function iprimir(){
+        //dd("hola");
+        $ventas = Venta::all();
+        $pdf=\PDF::loadview('reporte.venta',compact('ventas'));
+    return $pdf ->download('venta.pdf');
+    
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +38,8 @@ class VentaController extends Controller
     public function create()
     {
         $productos=Producto::all();
-        return view('venta.create', compact('productos'));
+        $clientes=cliente::all();
+        return view('venta.create', compact('productos', 'clientes'));
     }
 
     /**
@@ -45,9 +53,13 @@ class VentaController extends Controller
         // return $request;
         $ventas = new Venta();
         // $costos=$request->get('costo');
-        $ventas->costo = $ventas->costo + $request->get('costo');
+        // $ventas->costo = $request->get('costo');
         $ventas->llevar = $request->get('llevar');
         $ventas->user_id = auth()->user()->id;
+        $ventas->costo = $ventas->costo + $request->get('costo');
+        if($request->get('cliente')!='xxxxxxxxxxx'){
+            $ventas->cliente_id=$request->get('cliente');
+        }
         $ventas->save();
 
         $detalleventas = new DetalleVenta();
@@ -58,12 +70,8 @@ class VentaController extends Controller
         $detalleventas->producto_id =$idProd[0];
         $detalleventas->save();
 
-        $detalleventas=$ventas->detalle_ventas;
-        $productos=Producto::all();
-        return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
-        // return redirect()->route('ventas.edit', compact('detalleventas'));
-        // return route('ventas.edit', $detalleventas);
-        // return redirect()->route('ventas.edit', $productos);
+        $id = $ventas->id;
+        return redirect()->route('ventas.edit', $id);
     }
 
     /**
@@ -76,7 +84,8 @@ class VentaController extends Controller
     { 
         $productos=Producto::all();
         $user=User::find($venta->user_id);
-        return view('venta.show', compact('venta', 'user', 'productos'));
+        $cliente=cliente::find($venta->cliente_id);
+        return view('venta.show', compact('venta', 'user', 'productos', 'cliente'));
     }
 
     /**
@@ -85,12 +94,13 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(DetalleVenta $detalleVentas)
+    public function edit($id)
     {
-
-
+        $ventas=Venta::find($id);
         $productos=Producto::all();
-        return view('venta.edit', compact('productos', 'detalleVentas'));
+        $detalleventas=$ventas->detalle_ventas;
+        return view('venta.edit', compact('ventas', 'productos', 'detalleventas'));
+        // return view('venta.edit', compact('productos', 'detalleVentas'));
     }
 
     /**
@@ -116,8 +126,9 @@ class VentaController extends Controller
         $detalleventas->save();
 
         $detalleventas=$ventas->detalle_ventas;
-        $productos=Producto::all();
-        return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
+        $id = $ventas->id;
+        return redirect()->route('ventas.edit', $id);
+        // return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
     }
 
     /**
@@ -126,8 +137,13 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Venta $venta)
+    public function destroy($id)
     {
+        $venta=Venta::find($id);
+        $detalleventas=$venta->detalle_ventas;
+        foreach ($detalleventas as $detalleventa) {
+            $detalleventa->delete();
+        }
         $venta->delete();
         return redirect()->route('ventas.index');
     }

@@ -74,9 +74,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $trabajador=Trabajador::find($user->ci_trab);
+        return view('user.show', compact('user', 'trabajador'));
     }
 
     /**

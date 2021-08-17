@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nota_de_compra;
+use App\Models\Proveedor;
 
 class Nota_de_CompraController extends Controller
 {
@@ -26,6 +27,13 @@ class Nota_de_CompraController extends Controller
         return view('Compra.index',compact('notaCompra'));
     }
 
+    public function iprimir(){
+        //dd("hola");
+        $notaCompra = Nota_de_compra::all();
+        $pdf=\PDF::loadview('reporte.Compra',compact('notaCompra'));
+    return $pdf ->download('Compra.pdf');
+    
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +41,8 @@ class Nota_de_CompraController extends Controller
      */
     public function create()
     {
-        return view('Compra.create');
+        $proveedors= Proveedor::all();
+        return view('Compra.create',compact('proveedors'));
     }
 
     /**
