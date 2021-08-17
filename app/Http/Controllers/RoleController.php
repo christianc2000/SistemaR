@@ -110,12 +110,15 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->delete();
-
+        
         activity()->useLog('Rol')->log('Eliminado')->subject();
         $lastActivity = Activity::all()->last();
         $lastActivity->subject_id = Role::all()->last()->id;
         $lastActivity->save();
+        
+        $role->delete();
+
+        
 
         return redirect()->route('roles.index')->with('info', 'El rol se eliminó con exito');
     }
