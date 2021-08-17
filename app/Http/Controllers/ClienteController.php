@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cliente;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class ClienteController extends Controller
 {
@@ -50,8 +51,13 @@ class ClienteController extends Controller
         //$datosCliente=request()->all();
         $datosCliente = request()->except('_token');
         Cliente::insert($datosCliente);
-         
-        return redirect('cliente')->with('mensaje','Cliente agregado con exito');
+        
+        activity()->useLog('Cliente')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cliente::all()->last()->id;
+        $lastActivity->save();
+        
+            return redirect('cliente')->with('mensaje','Cliente agregado con exito');
         //return response()->json($datosCliente);
 
     }
@@ -93,6 +99,11 @@ class ClienteController extends Controller
         $datosCliente = request()->except('_token', '_method');
         cliente::where('id','=',$id)->update($datosCliente);
 
+        activity()->useLog('Cliente')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cliente::all()->last()->id;
+        $lastActivity->save();
+
         $cliente=cliente::findOrFail($id);
         return view('cliente.edit', compact('cliente'));
         
@@ -108,6 +119,12 @@ class ClienteController extends Controller
     {
         //
         Cliente::destroy($id);
+
+        activity()->useLog('Cliente')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cliente::all()->last()->id;
+        $lastActivity->save();
+
         return redirect('cliente')->with('mensaje','Empleado borrado');
     }
 }

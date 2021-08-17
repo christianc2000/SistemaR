@@ -9,6 +9,8 @@ use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
+
 use PDF;
 class VentaController extends Controller
 {
@@ -71,6 +73,12 @@ class VentaController extends Controller
         $detalleventas->save();
 
         $id = $ventas->id;
+
+        activity()->useLog('Venta')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Venta::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('ventas.edit', $id);
     }
 
@@ -127,6 +135,12 @@ class VentaController extends Controller
 
         $detalleventas=$ventas->detalle_ventas;
         $id = $ventas->id;
+
+        activity()->useLog('Venta')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id =Venta::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('ventas.edit', $id);
         // return view('venta.edit', compact('productos', 'ventas', 'detalleventas'));
     }
@@ -145,6 +159,12 @@ class VentaController extends Controller
             $detalleventa->delete();
         }
         $venta->delete();
+
+        activity()->useLog('Venta')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Venta::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('ventas.index');
     }
 }

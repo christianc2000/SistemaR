@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Trabajador;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Spatie\Activitylog\Models\Activity;
 
 
 use Illuminate\Http\Request;
@@ -65,6 +66,12 @@ class UserController extends Controller
         // $users->syncRoles($request->rol);//sincronizar rol
         //    return redirect()->route('users.edit', $user)->with('info', 'Se asignó los roles correctamente');
         // User::create($request->all());
+
+        activity()->useLog('Usuario')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('users.index')->with('info', 'Se creó un nuevo usuario'); //redirige a la vista index de la carpeta cargo
     }
 
@@ -120,6 +127,12 @@ class UserController extends Controller
         $user->ci_trab = $request->get('ci_trab');
         $user->save();
         $user->syncRoles($request->rol); //sincronizar rol
+
+        activity()->useLog('Usuario')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('users.index');
     }
 
@@ -132,6 +145,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        activity()->useLog('Usuario')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = User::all()->last()->id;
+        $lastActivity->save();
+
+
         return redirect()->route('users.index');
     }
 }

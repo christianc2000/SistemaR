@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Activitylog\Models\Activity;
 
 class RoleController extends Controller
 {
@@ -49,6 +50,12 @@ class RoleController extends Controller
     {
         $role=Role::create($request->all());
         $role->syncPermissions($request->permissions);
+
+        activity()->useLog('Rol')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Role::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('roles.index')->with('info', 'El rol se creó con exito');
     }
 
@@ -86,6 +93,12 @@ class RoleController extends Controller
     {
         $role->update($request->all());
         $role->syncPermissions($request->permissions);
+
+        activity()->useLog('Rol')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Role::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('roles.index')->with('info', 'El rol se actualizó con exito');
     }
 
@@ -98,6 +111,12 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
+
+        activity()->useLog('Rol')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Role::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('roles.index')->with('info', 'El rol se eliminó con exito');
     }
 }

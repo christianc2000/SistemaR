@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMenu;
 use Illuminate\Http\Request;
 use App\Models\Cargo;
 use GuzzleHttp\Middleware;
+use Spatie\Activitylog\Models\Activity;
 
 class CargoController extends Controller
 {
@@ -54,6 +55,11 @@ class CargoController extends Controller
         $cargos->perfil_usuario=$request->get('perfil_usuario');
         $cargos->save();
 
+        activity()->useLog('Cargo')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cargo::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('cargos.index');//redirige a la vista index de la carpeta cargo
      }
 
@@ -96,7 +102,10 @@ class CargoController extends Controller
             'perfil_usuario'=>'required'
         ]);
 
-
+        activity()->useLog('Cargo')->log('Editado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cargo::all()->last()->id;
+        $lastActivity->save();
        //$menu->slug=$request->nombre;
        $cargo->update($request->all());
        return redirect()->route('cargos.index');
@@ -111,6 +120,12 @@ class CargoController extends Controller
     public function destroy(Cargo $cargo)
     {
         $cargo->delete();
+
+        activity()->useLog('Cargo')->log('Eliminado')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Cargo::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('cargos.index');
     }
 }

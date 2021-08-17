@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Proveedor;
 use App\Http\Requests\StoreMenu;
 use GuzzleHttp\Middleware;
+use Spatie\Activitylog\Models\Activity;
+
 class ProveedorController extends Controller
 {
     public function __construct(){
@@ -50,6 +52,12 @@ class ProveedorController extends Controller
         $proveedors->nombre_negocio=$request->get('nombre_negocio');
         $proveedors->direccion=$request->get('direccion');
         $proveedors->save();
+
+        activity()->useLog('Proveedor')->log('Nuevo')->subject();
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = Proveedor::all()->last()->id;
+        $lastActivity->save();
+
         return redirect()->route('proveedors.index');
     }
 
@@ -91,6 +99,12 @@ class ProveedorController extends Controller
         ]);
 
        $proveedor->update($request->all());
+
+       activity()->useLog('Proveedor')->log('Editado')->subject();
+       $lastActivity = Activity::all()->last();
+       $lastActivity->subject_id = Proveedor::all()->last()->id;
+       $lastActivity->save();
+
        return redirect()->route('proveedors.index');
     }
 
@@ -104,6 +118,12 @@ class ProveedorController extends Controller
     {
 
         $proveedor->delete();
+
+        activity()->useLog('Proveedor')->log('Eliminado')->subject();
+       $lastActivity = Activity::all()->last();
+       $lastActivity->subject_id = Proveedor::all()->last()->id;
+       $lastActivity->save();
+
         return redirect()->route('proveedors.index');
     }
 }

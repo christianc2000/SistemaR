@@ -22,10 +22,7 @@ use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ExistenciaController;
 use App\Http\Controllers\NotaEntradaSalidaController;
 use App\Http\Controllers\DetalleNotaEntradaSalidaController;
-
-
-
-
+use App\Http\Controllers\Bitacora;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +52,7 @@ Route::group(['middleware'=>'auth'], function(){//si no esta logueado me manda a
     
     Route::resource('cliente', ClienteController::class);
     Route::resource('cargos', CargoController::class);
-    
+    Route::resource('bitacora', Bitacora::class);
     Route::resource('productosPlatos', ProductoPlatoController::class);
 
     Route::resource('detalleProductos', DetalleProductoController::class);
